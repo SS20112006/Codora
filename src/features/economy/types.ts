@@ -24,6 +24,16 @@ export interface EconomyMultipliers {
   streak: number
 }
 
+export type ProjectCategory =
+  | 'university'
+  | 'script'
+  | 'freelance'
+  | 'open_source'
+  | 'enterprise'
+  | 'startup'
+
+export type ContractRiskLevel = 'low' | 'medium' | 'high'
+
 export interface ProjectContract {
   id: string
   title: string
@@ -34,6 +44,32 @@ export interface ProjectContract {
   baseXp: number
   isFreeTier: boolean
   minCareerRole?: CareerRole
+  stage?: CareerStage
+  category?: ProjectCategory
+  client?: string
+  riskLevel?: ContractRiskLevel
+  netProfit?: number
+  roiPercentage?: number
+}
+
+export interface ContractFinancials {
+  grossReward: number
+  stakeReturned: number
+  netProfit: number
+  totalPayout: number
+  roiPercentage: number
+  xpEarned: number
+  multiplierApplied: number
+}
+
+export interface MarketGenerationOptions {
+  stage?: CareerStage
+  playerCoins?: number
+  count?: number
+  seed?: number | string
+  avoidContractIds?: string[]
+  multipliers?: Partial<EconomyMultipliers>
+  forceIncludeFreeTier?: boolean
 }
 
 export interface ProjectCompletionResult {

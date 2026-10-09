@@ -171,6 +171,26 @@ describe('Zustand Global Game Store', () => {
       expect(updated.profile.devCoins).toBe(75)
       expect(updated.stats.totalProjectsFailed).toBe(1)
     })
+
+    it('initializes with a populated catalog of available contracts in the market', () => {
+      const { availableContracts } = useGameStore.getState()
+      expect(availableContracts.length).toBeGreaterThanOrEqual(3)
+      expect(availableContracts.length).toBeLessThanOrEqual(4)
+      availableContracts.forEach((contract) => {
+        expect(contract.title).toBeTruthy()
+        expect(contract.durationMinutes).toBeGreaterThan(0)
+      })
+    })
+
+    it('refreshes the contracts market and updates available contracts list', () => {
+      const store = useGameStore.getState()
+      expect(store.availableContracts.length).toBeGreaterThan(0)
+
+      store.refreshContractsMarket()
+
+      const refreshed = useGameStore.getState().availableContracts
+      expect(refreshed.length).toBeGreaterThanOrEqual(3)
+    })
   })
 
   describe('Inventory Management', () => {

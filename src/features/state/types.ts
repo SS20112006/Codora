@@ -1,4 +1,5 @@
-import type { CareerRole, CareerStage } from '@/features/economy/types'
+import type { CareerRole, CareerStage, ProjectContract } from '@/features/economy/types'
+import { generateContractMarket } from '@/features/economy/contracts'
 import { DEFAULT_TIMER_CONFIG, type TimerConfig } from '@/features/timer/types'
 
 export type InventorySlot =
@@ -80,6 +81,7 @@ export interface GameState {
   settings: GameSettings
   stats: PlayerStats
   activeProject: ActiveProjectState | null
+  availableContracts?: ProjectContract[]
 }
 
 export const CURRENT_GAME_STATE_VERSION = 1
@@ -145,5 +147,6 @@ export function createInitialGameState(name = 'Dev'): GameState {
       flowStateCount: 0,
     },
     activeProject: null,
+    availableContracts: generateContractMarket({ stage: 'stage_1_university', playerCoins: 0 }),
   }
 }

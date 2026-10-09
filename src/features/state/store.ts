@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { calculateLevelFromXp, getCareerRole, getCareerStage } from '@/features/economy/levels'
+import { generateContractMarket } from '@/features/economy/contracts'
 import type {
   ProjectCancellationResult,
   ProjectCompletionResult,
@@ -30,6 +31,7 @@ export interface GameStoreState {
   settings: GameSettings
   stats: PlayerStats
   activeProject: ActiveProjectState | null
+  availableContracts: ProjectContract[]
   isHydrated: boolean
   isSaving: boolean
 
@@ -47,6 +49,7 @@ export interface GameStoreState {
   completeActiveProject: (result: ProjectCompletionResult) => void
   failActiveProject: (result?: ProjectCancellationResult) => void
   clearActiveProject: () => void
+  refreshContractsMarket: () => void
 
   // Inventory Management
   unlockItem: (itemId: string) => void
@@ -83,6 +86,9 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     settings: initial.settings,
     stats: initial.stats,
     activeProject: initial.activeProject,
+    availableContracts:
+      initial.availableContracts ??
+      generateContractMarket({ stage: initial.profile.stage, playerCoins: initial.profile.devCoins }),
     isHydrated: false,
     isSaving: false,
 
@@ -105,6 +111,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         },
         stats: { ...state.stats },
         activeProject: state.activeProject ? { ...state.activeProject } : null,
+        availableContracts: [...state.availableContracts],
       }
     },
 
@@ -294,6 +301,17 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       set({ activeProject: null })
     },
 
+    refreshContractsMarket: () => {
+      const { profile, availableContracts } = get()
+      const previousIds = availableContracts.map((c) => c.id)
+      const nextMarket = generateContractMarket({
+        stage: profile.stage,
+        playerCoins: profile.devCoins,
+        avoidContractIds: previousIds,
+      })
+      set({ availableContracts: nextMarket })
+    },
+
     unlockItem: (itemId: string) => {
       set((state) => {
         if (state.inventory.ownedItemIds.includes(itemId)) {
@@ -419,6 +437,10 @@ export const useGameStore = create<GameStoreState>((set, get) => {
             settings: loaded.settings,
             stats: loaded.stats,
             activeProject: loaded.activeProject,
+            availableContracts:
+              loaded.availableContracts && loaded.availableContracts.length > 0
+                ? loaded.availableContracts
+                : generateContractMarket({ stage: loaded.profile.stage, playerCoins: loaded.profile.devCoins }),
             isHydrated: true,
           })
           return
@@ -456,6 +478,9 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         settings: initialReset.settings,
         stats: initialReset.stats,
         activeProject: initialReset.activeProject,
+        availableContracts:
+          initialReset.availableContracts ??
+          generateContractMarket({ stage: initialReset.profile.stage, playerCoins: initialReset.profile.devCoins }),
         isHydrated: true,
         isSaving: false,
       })
@@ -479,6 +504,10 @@ export const useGameStore = create<GameStoreState>((set, get) => {
           settings: validatedState.settings,
           stats: validatedState.stats,
           activeProject: validatedState.activeProject,
+          availableContracts:
+            validatedState.availableContracts && validatedState.availableContracts.length > 0
+              ? validatedState.availableContracts
+              : generateContractMarket({ stage: validatedState.profile.stage, playerCoins: validatedState.profile.devCoins }),
           isHydrated: true,
         })
         return true

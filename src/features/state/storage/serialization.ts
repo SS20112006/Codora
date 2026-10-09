@@ -164,6 +164,13 @@ export function importSaveFromJson(jsonString: string): GameState {
     }
   }
 
+  let availableContracts = defaultState.availableContracts
+  if (Array.isArray(data.availableContracts) && data.availableContracts.length > 0) {
+    availableContracts = data.availableContracts.filter(
+      (c) => typeof c === 'object' && c !== null && typeof (c as Record<string, unknown>).id === 'string'
+    ) as typeof defaultState.availableContracts
+  }
+
   return {
     version: CURRENT_GAME_STATE_VERSION,
     profile,
@@ -174,5 +181,6 @@ export function importSaveFromJson(jsonString: string): GameState {
     settings,
     stats,
     activeProject,
+    availableContracts,
   }
 }
