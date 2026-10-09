@@ -38,6 +38,10 @@
 * [x] **Ecossistema de Áudio Completo com Painel de Controlo Granular:**
   * **Módulos Incluídos:** Música de Foco (Lo-Fi Beats relaxantes), Sons de Ambiente (chuva, café, teclado mecânico suave), Efeitos Sonoros de Interface (moedas, level up, cliques táteis) e Alerta Sonoro de Conclusão de Pomodoro.
   * **Mixer de Controlo Total pelo Utilizador:** Painel de áudio acessível onde o utilizador pode ligar/desligar de forma 100% independente qualquer um dos canais (ex: desligar a música mas manter a chuva; desligar os alertas; silenciar tudo com um único clique para quem já usa Spotify ou prefere silêncio absoluto).
+* [x] **Mecânica Idle & Rendimento Passivo Offline:** **Opção A — Idle Clássico com Teto Máximo**.
+  * Projetos concluídos e lançados geram uma base acumulada de "Users Ativos / Servidores", produzindo um fluxo passivo de DevCoins ao longo do tempo.
+  * **Retorno Offline ("Welcome Back"):** Ao fechar o navegador e regressar mais tarde, o jogador é recebido com uma janela com o resumo dos ganhos offline acumulados.
+  * **Teto Máximo de Proteção:** Limite de tempo de ausência acumulável (ex: teto máximo de 8h a 12h) para preservar o equilíbrio da economia e garantir que o Pomodoro ativo continua a ser o motor de progressão essencial.
 
 ---
 
@@ -82,4 +86,6 @@
   * **Decisão do Utilizador:** Estilo *Tuber Simulator* — projetos pré-definidos contextuais com a fase do jogador (trabalhos da faculdade/pequenos freelances na universidade, escalando para projetos maiores), com custos e retornos dinâmicos para escolha estratégica sem necessidade de digitação.
 * **Q7 (Áudio, Ambiente e Música):** Presença de som e flexibilidade de controlo.
   * **Decisão do Utilizador:** Pacote completo disponível (Música Lo-Fi, Sons de Ambiente, SFX e Alerta de Pomodoro), acompanhado obrigatoriamente de um painel de controlo/mixer onde o utilizador pode ligar, desligar ou ajustar individualmente cada som (incluindo silenciar tudo).
-* **Q8:** *(Em curso)*
+* **Q8 (Mecânica Idle & Ganhos Offline):** Rendimento passivo ao regressar vs apenas online vs sem moedas passivas.
+  * **Decisão do Utilizador:** Opção A — Rendimento passivo offline clássico de idle game ("Welcome Back!"), com teto máximo configurado para preservar o balanceamento da economia.
+* **Q9:** *(Em curso)*
