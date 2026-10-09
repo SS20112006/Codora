@@ -22,6 +22,11 @@
   * O jogador novo começa a zeros (ou saldo inicial mínimo) e tem sempre acesso a projetos sem investimento prévio (0 DevCoins).
   * **Balanceamento anti-spam para jogadores avançados:** O retorno do projeto gratuito é fixo e modesto (ex: 10-15 DevCoins por 25m, XP básico), não escalando exponencialmente com os multiplicadores de carreira avançada.
   * Para um novato ou jogador falido, serve perfeitamente para reerguer a banca inicial. Para um jogador avançado (com mobílias e custos na ordem das centenas/milhares), o custo de oportunidade torna o projeto de custo 0 ineficiente, incentivando naturalmente o *staking* de projetos de maior escala.
+* [x] **Estrutura de Layout & HUD:** **Opção A — Cenário Vivo Imersivo com HUD Flutuante**.
+  * A sala animada 2D é o palco visual de fundo em tela cheia/área central contínua.
+  * Barra de status superior limpa (DevCoins, Nível, Streak, indicador de modo).
+  * Cronómetro de foco e controlo de sprint integrados de forma orgânica.
+  * Menus de gestão (Loja de Mobília/Setup, Seleção de Projetos, Carreira, Configurações) abrem em painéis deslizantes laterais (*drawers*) ou janelas sobrepostas translúcidas (*glassmorphism/blur*), mantendo a sensação aconchegante da sala sempre presente sem recarregar páginas.
 
 ---
 
@@ -58,4 +63,6 @@
   * **Decisão do Utilizador:** Configurável pelo jogador — o utilizador escolhe se quer permitir pausas de emergência ou jogar sem pausas.
 * **Q3 (Economia Inicial & Anti-Falência):** 0 Moedas com projetos grátis vs Bolsa inicial.
   * **Decisão do Utilizador:** Projetos a custo 0 (livres de investimento inicial) para novatos e resgate de falência, porém com retorno deliberadamente baixo/modesto para que jogadores avançados não tenham incentivo a spammar e prefiram projetos com staking real.
-* **Q4:** *(Em curso)*
+* **Q4 (Layout & Interface):** Cenário Vivo com HUD Flutuante vs Split Screen Fixo vs Páginas Separadas.
+  * **Decisão do Utilizador:** Opção A — Cenário Vivo Imersivo com HUD Flutuante e menus em painéis/drawers translúcidos.
+* **Q5:** *(Em curso)*
