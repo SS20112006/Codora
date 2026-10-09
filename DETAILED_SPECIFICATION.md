@@ -22,11 +22,15 @@
   * O jogador novo começa a zeros (ou saldo inicial mínimo) e tem sempre acesso a projetos sem investimento prévio (0 DevCoins).
   * **Balanceamento anti-spam para jogadores avançados:** O retorno do projeto gratuito é fixo e modesto (ex: 10-15 DevCoins por 25m, XP básico), não escalando exponencialmente com os multiplicadores de carreira avançada.
   * Para um novato ou jogador falido, serve perfeitamente para reerguer a banca inicial. Para um jogador avançado (com mobílias e custos na ordem das centenas/milhares), o custo de oportunidade torna o projeto de custo 0 ineficiente, incentivando naturalmente o *staking* de projetos de maior escala.
-* [x] **Estrutura de Layout & HUD:** **Opção A — Cenário Vivo Imersivo com HUD Flutuante**.
-  * A sala animada 2D é o palco visual de fundo em tela cheia/área central contínua.
-  * Barra de status superior limpa (DevCoins, Nível, Streak, indicador de modo).
-  * Cronómetro de foco e controlo de sprint integrados de forma orgânica.
-  * Menus de gestão (Loja de Mobília/Setup, Seleção de Projetos, Carreira, Configurações) abrem em painéis deslizantes laterais (*drawers*) ou janelas sobrepostas translúcidas (*glassmorphism/blur*), mantendo a sensação aconchegante da sala sempre presente sem recarregar páginas.
+* [x] **Estrutura de Layout & HUD:** **Cenário Fullscreen Vivo (Jogo em Tela Cheia) com HUDs Flutuantes**.
+  * O quarto ocupa **100% da viewport em tela cheia (`100vw` $\times$ `100vh`)**, eliminando completamente o layout tradicional de documento web (sem rodapés estáticos soltos, sem caixas de vídeo com molduras, sem barras de rolagem).
+  * A barra superior (Top HUD Bar) flutua de forma translúcida no topo do ecrã com informações de moeda, nível, XP e streak.
+  * O relógio Pomodoro e o cartão de estado do projeto flutuam suavemente na parte inferior sobre o chão da sala.
+  * Todos os menus de gestão (Seleção de Contratos, Loja de Mobília/Setup, Conquistas, Configurações) abrem como **drawers translúcidos laterais (*glassmorphism/blur*)** ou modais integrados, mantendo a imersão viva e contínua do quarto no fundo sem sair do jogo.
+* [x] **Motor Gráfico & Renderização 2D (Transição de Formas Geométricas para Game Engine):**
+  * As formas geométricas procedurais SVG (`<rect>`, `<circle>`, `<path>`) utilizadas inicialmente serviram como prova de conceito e scaffolding modular de layouts.
+  * Para entregar uma estética de jogo autêntica e altamente polida (estilo *Tuber Simulator*, *Game Dev Tycoon* e *Lofi Girl*), a arquitetura adota **PixiJS (`pixi.js` + `@pixi/react`)** / **Canvas 2D com Spritesheets** acelerado por WebGL/WebGPU.
+  * Isto viabiliza a introdução de texturas de madeira reais, computadores ilustrados com reflexos e shaders, iluminação volumétrica dinâmica da janela (dia/pôr do sol/noite) e animação de sprites detalhada do avatar em vez de figuras geométricas simplistas.
 * [x] **Avatar Dinâmico por Fase & Acessórios Equipáveis:**
   * **Vestuário Evolutivo por Patamar de Carreira:** O guarda-roupa do avatar atualiza-se organicamente consoante o nível e o cenário (ex: fase inicial de estudante = hoodies, calças casuais; fases profissionais avançadas = camisas, polo, smart-casual).
   * **Cenários / Mapas Transitáveis:** Slots da sala mantêm a consistência posicional, mas ao completar um ciclo de carreira, o cenário muda por completo (ex: Quarto de Estudante $\rightarrow$ Apartamento Próprio $\rightarrow$ Escritório de Startup $\rightarrow$ Tech Studio).
@@ -75,7 +79,7 @@
 * [x] **Stack Tecnológica Oficial:**
   * **Core Web:** React 19 + TypeScript + Vite.
   * **Estilização & Motion:** Tailwind CSS + Framer Motion.
-  * **Gráficos & Arte:** Componentes SVG Modulares em React DOM com animações via CSS keyframes.
+  * **Gráficos & Viewport:** Fullscreen Immersive Stage (`100vw` $\times$ `100vh`) com Overlays Integrados + Transição para PixiJS / WebGL 2D Spritesheets com shaders de iluminação e assets de jogo autênticos (em vez de meras figuras geométricas SVG).
   * **Engine Temporal:** Dedicated Web Worker (imune ao throttling de abas em background).
   * **Estado & Economia:** Zustand + Módulos Puros TypeScript com testes em Vitest (TDD).
   * **Persistência:** Local-First (IndexedDB / LocalStorage) com arquitetura Cloud-Ready (padrão Repository) e export/import JSON.
@@ -88,27 +92,27 @@
 Todos os itens foram mapeados, dimensionados e criados no repositório GitHub como **Issues sequenciais**:
 
 | Issue | Tarefa | Módulo | Descrição Resumida |
-| :---: | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- |
 | [#1](https://github.com/SS20112006/Codora/issues/1) | **Task 01** | `core` | Setup do projeto (Vite + React 19 + TypeScript + Tailwind CSS + Vitest) |
 | [#2](https://github.com/SS20112006/Codora/issues/2) | **Task 02** | `timer` | Motor Pomodoro Web Worker imune a drift (Pausa de Emergência + Hardcore) |
 | [#3](https://github.com/SS20112006/Codora/issues/3) | **Task 03** | `economy` | Fórmulas matemáticas de Staking, ROI, XP e proteção de falência (TDD) |
 | [#4](https://github.com/SS20112006/Codora/issues/4) | **Task 04** | `state` | Zustand Store com persistência Local-First Cloud-Ready (IndexedDB/JSON) |
 | [#5](https://github.com/SS20112006/Codora/issues/5) | **Task 05** | `contracts` | Catálogo de contratos e projetos rotativos (estilo *Tuber Simulator*) |
-| [#6](https://github.com/SS20112006/Codora/issues/6) | **Task 06** | `view` | Palco Visual Fase 1: Quarto universitário *The Social Network* em SVG 2D |
-| [#7](https://github.com/SS20112006/Codora/issues/7) | **Task 07** | `avatar` | Avatar do programador em SVG com animações CSS de digitação e pausa |
+| [#6](https://github.com/SS20112006/Codora/issues/6) | **Task 06** | `view` | Palco Visual Fase 1: Quarto universitário *The Social Network* Fullscreen |
+| [#7](https://github.com/SS20112006/Codora/issues/7) | **Task 07** | `avatar` | Avatar do programador com animações de digitação e pausa |
 | [#8](https://github.com/SS20112006/Codora/issues/8) | **Task 08** | `atmosphere`| Iluminação dinâmica e modos selecionáveis da janela (Dia/Pôr do Sol/Noite) |
-| [#9](https://github.com/SS20112006/Codora/issues/9) | **Task 09** | `hud` | HUD flutuante imersivo e relógio Pomodoro integrado na cena |
+| [#9](https://github.com/SS20112006/Codora/issues/9) | **Task 09** | `hud` | HUD flutuante imersivo e relógio Pomodoro integrado na cena fullscreen |
 | [#10](https://github.com/SS20112006/Codora/issues/10) | **Task 10** | `ui` | Drawer translúcido (*glassmorphism*) para seleção e staking de contratos |
 | [#11](https://github.com/SS20112006/Codora/issues/11) | **Task 11** | `audio` | Suite de áudio completa (Música Lo-Fi, Sons de Ambiente, SFX) e Mixer |
-| [#12](https://github.com/SS20112006/Codora/issues/12) | **Task 12** | `shop` | Loja de upgrades e acessórios equipáveis visíveis (headphones, 2º monitor) |
+| [#12](https://github.com/SS20112006/Codora/issues/12) | **Task 12** | `shop` | Loja de upgrades e acessórios equipáveis visíveis no quarto fullscreen |
 | [#13](https://github.com/SS20112006/Codora/issues/13) | **Task 13** | `gamification`| Sistema de Streak diário e 3 Missões Diárias (*Daily Quests*) |
 | [#14](https://github.com/SS20112006/Codora/issues/14) | **Task 14** | `achievements`| Conquistas de carreira e estante de troféus com prémios em XP e moedas |
 | [#15](https://github.com/SS20112006/Codora/issues/15) | **Task 15** | `idle` | Rendimento passivo offline e modal de boas-vindas (*Welcome Back*) |
-| [#16](https://github.com/SS20112006/Codora/issues/16) | **Task 16** | `stages` | Fase 2: Home Office de Júnior, contratos corporativos e novas roupas |
-| [#17](https://github.com/SS20112006/Codora/issues/17) | **Task 17** | `stages` | Fase 3: Escritório de Co-working / Startup, projetos avançados e smart-casual |
-| [#18](https://github.com/SS20112006/Codora/issues/18) | **Task 18** | `stages` | Fase 4: Penthouse Tech Headquarters, setup ultrawide e contratos founder |
-| [#19](https://github.com/SS20112006/Codora/issues/19) | **Task 19** | `settings` | Painel de definições, export/import de save JSON e reset de dados |
-| [#20](https://github.com/SS20112006/Codora/issues/20) | **Task 20** | `release` | Auditoria de acessibilidade WCAG AA, performance e deploy em produção |
+| [#16](https://github.com/SS20112006/Codora/issues/16) | **Task 16** | `stages` | Fase 2: Home Office de Júnior Fullscreen, contratos corporativos e roupas |
+| [#17](https://github.com/SS20112006/Codora/issues/17) | **Task 17** | `stages` | Fase 3: Escritório de Co-working / Startup Fullscreen, projetos avançados |
+| [#18](https://github.com/SS20112006/Codora/issues/18) | **Task 18** | `stages` | Fase 4: Penthouse Tech Headquarters Fullscreen, setup ultrawide |
+| [#19](https://github.com/SS20112006/Codora/issues/19) | **Task 19** | `settings` | Painel de definições integrado, export/import de save JSON e reset |
+| [#20](https://github.com/SS20112006/Codora/issues/20) | **Task 20** | `release` | Auditoria de acessibilidade WCAG AA, polimento gráfico e deploy |
 
 ---
 
@@ -144,4 +148,8 @@ Todos os itens foram mapeados, dimensionados e criados no repositório GitHub co
   * **Decisão do Utilizador:** Incluir os 3 elementos (Streak de dias consecutivos, 3 Missões Diárias e Troféus visuais na estante), com as conquistas a concederem recompensas tangíveis em XP de Carreira e DevCoins para acelerar o progresso.
 * **Q13 (Stack Tecnológica & Arquitetura):** Validação de React 19 + TypeScript + Vite + Tailwind + SVG DOM + Web Worker + Zustand + Vitest.
   * **Decisão do Utilizador:** Confirmado e aprovado integralmente.
-* **Q14:** *(Em curso)*
+* **Q14 (Fullscreen Imersivo Total & Transição para Game Engine 2D):**
+  * **Decisão do Utilizador:**
+    1. O jogo é **100% Fullscreen**: o quarto preenche a tela inteira (`100vw` $\times$ `100vh`), sem layout de página web tradicional, sem rodapé de texto solto e sem caixas de vídeo limitadas. Todos os menus, HUDs, drawers e relógios são elementos integrados flutuantes sobre o jogo.
+    2. Pesquisa e transição gráfica: as figuras geométricas procedurais (`<rect>`, `<circle>`) devem evoluir para uma Game Engine ou biblioteca de renderização 2D (**PixiJS** com spritesheets e texturas ricas de materiais e iluminação) para transformar verdadeiramente o Codora num jogo visualmente autêntico.
+

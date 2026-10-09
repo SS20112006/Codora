@@ -96,12 +96,17 @@ O ciclo principal divide-se em duas fases contínuas e integradas no mesmo ecrã
 
 ---
 
-## 5. Direção Visual & Pipeline de Assets (Zero Custos / Sem Desenho Manual)
+## 5. Direção Visual, Viewport Fullscreen & Pipeline de Assets
 
-* **Estilo Visual:** Ilustração vetorial 2D / 2.5D moderna, limpa e minimalista (longe do pixel art tradicional).
-* **Personagem Modular:** Estrutura vetorial SVG (baseada em kits open-source como *Open Peeps* ou *Humaaans*), permitindo customizar género, cabelo e roupa sem desenhar à mão.
-* **Animações em CSS/SVG:** Em vez de desenhar centenas de frames, a animação de teclar, o fumo do café, o piscar do cursor e o balanço do avatar são feitos via transformações e keyframes CSS.
-* **Itens do Quarto:** Assets vetoriais organizados numa grelha/slots com controlo de camadas ($z$-index).
+* **Experiência Fullscreen Imersiva (Zero Páginas Tradicionais):**
+  * O cenário do quarto ocupa **100% da viewport (tela cheia)** em qualquer resolução (`100vw` x `100vh`), sem barras de rolagem ou estrutura de documento web convencional (sem rodapés estáticos ou caixas de vídeo limitadas).
+  * Todos os controlos de navegação, relógio Pomodoro, cartões de contrato e lojas abrem como **Overlays e Drawers translúcidos integrados na cena**, flutuando diretamente sobre o quarto.
+* **Transição de Figuras Geométricas para Game Engine Autêntica:**
+  * Atualmente, o protótipo inicial utiliza formas geométricas procedurais SVG (`<rect>`, `<circle>`).
+  * A arquitetura oficial planeia a transição para **PixiJS (`pixi.js` + `@pixi/react`)** ou **Canvas 2D com Spritesheets**, utilizando texturas ilustradas ricas (madeira realista, luz volumétrica da janela, computadores detalhados e avatares animados frame-a-frame) em vez de primitivas matemáticas simples, garantindo uma estética de jogo polida (estilo *Tuber Simulator*, *Game Dev Tycoon* e *Lofi Girl*).
+* **Personagem Modular & Sprites:**
+  * Animação expressiva com ciclos de digitação fluida durante o foco e animações descontraídas de pausa.
+* **Itens do Quarto:** Assets modulares organizados numa grelha/slots com controlo de camadas ($z$-index).
 
 ---
 
@@ -110,14 +115,16 @@ O ciclo principal divide-se em duas fases contínuas e integradas no mesmo ecrã
 | Módulo | Tecnologia | Propósito no Portfólio |
 | :--- | :--- | :--- |
 | **Framework Web** | React + TypeScript + Vite | Aplicação ultra rápida, tipagem estrita e DX moderna |
-| **Estilização** | Tailwind CSS + Framer Motion | Interface elegante, menus suaves e responsividade |
-| **Cenário & Render** | SVG Dinâmico / React DOM Canvas | Gráficos vetoriais nítidos em qualquer ecrã e retina display |
+| **Estilização & Motion** | Tailwind CSS + Framer Motion | Interface elegante, menus suaves e responsividade |
+| **Viewport & Stage** | Fullscreen Immersive Canvas | Quarto ocupa 100% da tela cheia com HUDs e drawers flutuantes |
+| **Motor Gráfico (Engine)** | PixiJS / WebGL 2D Spritesheets (ou SVG Híbrido) | Renderização acelerada por GPU, iluminação dinâmica e sprites de jogo reais |
 | **Engine de Tempo** | Web Workers | Temporizador sem *drift*, imune a abas minimizadas ou suspensas |
 | **Engine de Economia** | Módulos TypeScript Puros (TDD) | Fórmulas matemáticas de balanceamento 100% testadas com Vitest |
 | **Gestão de Estado** | Zustand | Estado global reativo e leve para inventário, moedas e loja |
 | **Persistência** | IndexedDB / LocalStorage | Offline-first, sem servidor, com exportação/importação de save em JSON |
 | **Deployment** | Vercel / Cloudflare Pages / GitHub Pages | Custo 0€ vitalício com CI/CD contínuo |
 | **Desktop Nativo (Futuro)** | Tauri | Opção de compilar para `.dmg` (Mac) e `.exe` (Windows) com apenas ~5MB |
+
 
 ---
 

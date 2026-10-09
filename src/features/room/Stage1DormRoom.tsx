@@ -14,7 +14,7 @@ export const Stage1DormRoom: React.FC<Stage1DormRoomProps> = ({
   return (
     <div
       data-testid={testId}
-      className={`relative w-full aspect-video overflow-hidden rounded-2xl bg-[#0b0d14] border border-codora-border shadow-2xl select-none ${className}`}
+      className={`relative w-full h-full overflow-hidden bg-[#0b0d14] select-none ${className}`}
     >
       <svg
         role="img"
