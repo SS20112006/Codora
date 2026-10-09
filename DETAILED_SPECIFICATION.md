@@ -45,6 +45,25 @@
 * [x] **Arquitetura de Dados & Persistência:** **Opção B — Local-First com Abstração Pronta para Nuvem**.
   * **Fase V1 (Custo Zero & Zero Atrito):** Persistência no navegador via `IndexedDB` / `LocalStorage`. Sem necessidade de registo prévio, arranque imediato, privacidade total, com exportação e importação manual de ficheiros de save em JSON.
   * **Design Cloud-Ready:** A camada de persistência utiliza o padrão *Repository/Storage Adapter*, permitindo no futuro conectar um backend com autenticação e sincronização na cloud (ex: Supabase / Firebase / Postgres) sem necessidade de refatorar a lógica interna do jogo.
+* [x] **Direção Artística dos 4 Grandes Cenários & Progressão por XP:**
+  * **Fase 1 — Quarto Universitário (Ref: Mark Zuckerberg em *The Social Network* / Dormitório de Harvard):**
+    * *Vibe:* Época de exames universitária, foco total a altas horas da noite.
+    * *Cenário vivo/fulfilled:* Mesa simples de estudo, portátil de arranque, caixa de pizza no chão, lata de refrigerante/Coca-Cola, notas adesivas na parede, cabos à vista.
+    * *Visual do Avatar:* Hoodies largos, calças de ganga ou calças de pijama; calçado: sneakers básicos, chinelos com meia ou crocs.
+  * **Fase 2 — Primeiro Home Office Digno / Espaço Alugado (Estagiário / Dev Júnior):**
+    * *Vibe:* Low-budget mas organizado; transição de estudante para trabalhador júnior formal.
+    * *Cenário:* Local específico e limpo de trabalho, secretária mais espaçosa, cadeira de escritório melhor, estante com livros de engenharia, candeeiro de secretária.
+    * *Visual do Avatar:* T-shirts limpas, calças casuais/chinos, ténis arrumados.
+  * **Fase 3 — Co-working / Escritório de Startup (Dev Pleno / Dev Sénior):**
+    * *Vibe:* Ambiente profissional de alta tecnologia, projetos de escala e arquitetura.
+    * *Cenário:* Divisórias modernas de vidro, plantas de interior decorativas, máquina de café expresso, setup multi-ecrã.
+    * *Visual do Avatar:* Smart-casual (camisas de manga arregaçada, pólos, malhas leves).
+  * **Fase 4 — Penthouse Privada / Tech Headquarters (Tech Lead / Indie Founder):**
+    * *Vibe:* Pináculo da carreira e independência financeira ("Elite Coder").
+    * *Cenário:* Andar superior com vista panorâmica da cidade e arranha-céus pela janela, mesa elevatória minimalista em madeira nobre, monitor ultrawide com lightbar, acústica e estética perfeitas.
+  * **Gatilho de Desbloqueio & Curva de Níveis:**
+    * A transição de cenário dá-se **automaticamente ao atingir os patamares de Nível de Carreira/XP**.
+    * A transição da Fase 1 para a Fase 2 é mais rápida (para incentivar o novo jogador com a primeira grande conquista), aumentando progressivamente o tempo necessário entre as fases seguintes para manter uma progressão sustentada sem ser frustrante nem trivial.
 
 ---
 
@@ -93,4 +112,11 @@
   * **Decisão do Utilizador:** Opção A — Rendimento passivo offline clássico de idle game ("Welcome Back!"), com teto máximo configurado para preservar o balanceamento da economia.
 * **Q9 (Persistência & Dados):** 100% Local-first estrito vs Local-first com arquitetura cloud-ready vs Login obrigatório.
   * **Decisão do Utilizador:** Opção B — Local-first na v1 (sem atrito, sem registo, export/import JSON) com arquitetura em camadas preparada para ligar nuvem/auth no futuro.
-* **Q10:** *(Em curso)*
+* **Q10 (Cenários & Progressão de Nível):** Definição visual detalhada das 4 fases e gatilho de mudança.
+  * **Decisão do Utilizador:** 
+    * Fase 1: Quarto universitário "The Social Network" (pizza no chão, lata, hoodies, crocs/chinelos com meia, portátil simples).
+    * Fase 2: Home office próprio low-budget mas digno de júnior/estagiário.
+    * Fase 3: Co-working / Startup premium com cafezito e projetos maiores.
+    * Fase 4: Penthouse com vista de cidade, monitor ultrawide, vibe de coder de topo.
+    * Desbloqueio: Progressão automática por XP, com ritmo rápido de Fase 1 para Fase 2 e desaceleração calculada para evitar frustração.
+* **Q11:** *(Em curso)*
