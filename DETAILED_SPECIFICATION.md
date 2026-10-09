@@ -27,6 +27,10 @@
   * Barra de status superior limpa (DevCoins, Nível, Streak, indicador de modo).
   * Cronómetro de foco e controlo de sprint integrados de forma orgânica.
   * Menus de gestão (Loja de Mobília/Setup, Seleção de Projetos, Carreira, Configurações) abrem em painéis deslizantes laterais (*drawers*) ou janelas sobrepostas translúcidas (*glassmorphism/blur*), mantendo a sensação aconchegante da sala sempre presente sem recarregar páginas.
+* [x] **Avatar Dinâmico por Fase & Acessórios Equipáveis:**
+  * **Vestuário Evolutivo por Patamar de Carreira:** O guarda-roupa do avatar atualiza-se organicamente consoante o nível e o cenário (ex: fase inicial de estudante = hoodies, calças casuais; fases profissionais avançadas = camisas, polo, smart-casual).
+  * **Cenários / Mapas Transitáveis:** Slots da sala mantêm a consistência posicional, mas ao completar um ciclo de carreira, o cenário muda por completo (ex: Quarto de Estudante $\rightarrow$ Apartamento Próprio $\rightarrow$ Escritório de Startup $\rightarrow$ Tech Studio).
+  * **Acessórios Visíveis na Loja:** Itens comprados refletem-se visual e imediatamente no ecrã — acessórios pessoais no avatar (ex: headphones na cabeça) e melhorias de hardware no setup (ex: adicionar segundo monitor, caneca na mesa, lâmpada de monitor), concedendo bónus de rendimento e XP.
 
 ---
 
@@ -65,4 +69,6 @@
   * **Decisão do Utilizador:** Projetos a custo 0 (livres de investimento inicial) para novatos e resgate de falência, porém com retorno deliberadamente baixo/modesto para que jogadores avançados não tenham incentivo a spammar e prefiram projetos com staking real.
 * **Q4 (Layout & Interface):** Cenário Vivo com HUD Flutuante vs Split Screen Fixo vs Páginas Separadas.
   * **Decisão do Utilizador:** Opção A — Cenário Vivo Imersivo com HUD Flutuante e menus em painéis/drawers translúcidos.
-* **Q5:** *(Em curso)*
+* **Q5 (Avatar & Slots de Sala):** Customização de personagem, transição de cenários e itens comprados.
+  * **Decisão do Utilizador:** Roupas atualizam com os níveis de carreira (hoodies no início, camisas nos níveis altos); slots de cenário fixos mas com mapas/ambientes completamente novos a cada patamar; acessórios comprados equipam-se visualmente (ex: headphones no avatar, segundo monitor na secretária).
+* **Q6:** *(Em curso)*
