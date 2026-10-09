@@ -87,4 +87,33 @@ describe('Stage1DormRoom Scene Component', () => {
     rerender(<Stage1DormRoom isFocusing={true} />)
     expect(avatar).toHaveAttribute('data-avatar-state', 'coding')
   })
+
+  it('renders desk lamp illuminated with warm light at night', () => {
+    render(<Stage1DormRoom ambience="night" />)
+    const lamp = screen.getByTestId('dorm-desk-lamp')
+    expect(lamp).toBeInTheDocument()
+    expect(lamp).toHaveAttribute('data-lamp-on', 'true')
+  })
+
+  it('turns off desk lamp during clear daylight', () => {
+    render(<Stage1DormRoom ambience="day" />)
+    const lamp = screen.getByTestId('dorm-desk-lamp')
+    expect(lamp).toBeInTheDocument()
+    expect(lamp).toHaveAttribute('data-lamp-on', 'false')
+  })
+
+  it('renders dynamic lighting atmospheric overlays corresponding to ambience', () => {
+    const { rerender } = render(<Stage1DormRoom ambience="night" />)
+    expect(screen.getByTestId('room-night-overlay')).toHaveAttribute('opacity', '0.18')
+    expect(screen.getByTestId('room-sunset-overlay')).toHaveAttribute('opacity', '0')
+
+    rerender(<Stage1DormRoom ambience="sunset" />)
+    expect(screen.getByTestId('room-sunset-overlay')).toHaveAttribute('opacity', '0.08')
+    expect(screen.getByTestId('room-sunset-beam')).toHaveAttribute('opacity', '0.8')
+
+    rerender(<Stage1DormRoom ambience="day" />)
+    expect(screen.getByTestId('room-day-overlay')).toHaveAttribute('opacity', '0.03')
+    expect(screen.getByTestId('room-day-sunbeam')).toHaveAttribute('opacity', '0.75')
+  })
 })
+

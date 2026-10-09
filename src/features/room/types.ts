@@ -25,6 +25,8 @@ export interface Stage1DormRoomProps {
   isFocusing?: boolean
   /** Lighting ambience mode */
   ambience?: 'night' | 'day' | 'sunset'
+  /** Explicit desk lamp control, defaults to true when ambience === 'night' */
+  isLampOn?: boolean
   /** Custom slots for future modular upgrades */
   slots?: Stage1RoomSlots
   /** Test identifier */

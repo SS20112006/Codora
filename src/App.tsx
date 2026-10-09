@@ -17,6 +17,7 @@ import {
 import { usePomodoro } from './features/timer'
 import { useGameStore } from './features/state'
 import { Stage1DormRoom } from './features/room'
+import { AmbienceSelector, useAtmosphere } from './features/atmosphere'
 import type { CareerRole, CareerStage } from './features/economy'
 
 export const App: React.FC = () => {
@@ -30,6 +31,8 @@ export const App: React.FC = () => {
   const devCoins = profile.devCoins
   const devXp = profile.totalXp
   const activeUsers = profile.activeUsers
+
+  const { effectiveAmbience } = useAtmosphere()
 
   const getRoleLabel = (role: CareerRole) => {
     switch (role) {
@@ -136,6 +139,9 @@ export const App: React.FC = () => {
             </div>
           </div>
 
+          {/* Ambience & Lighting Mode HUD Controls (Task 08) */}
+          <AmbienceSelector />
+
           {/* Currency / Stats Indicators */}
           <div className="flex items-center gap-3 flex-wrap">
             <div className="flex items-center gap-2 bg-codora-bg/60 border border-codora-border px-3.5 py-1.5 rounded-lg text-sm">
@@ -165,7 +171,7 @@ export const App: React.FC = () => {
         <section aria-label="Cenário do Quarto Universitário" className="w-full">
           <Stage1DormRoom
             isFocusing={status === 'running'}
-            ambience="night"
+            ambience={effectiveAmbience}
           />
         </section>
 

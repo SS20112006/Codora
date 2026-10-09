@@ -61,4 +61,23 @@ describe('App Core Component', () => {
     ).toBeInTheDocument()
     expect(screen.getByTestId('stage1-dorm-room')).toBeInTheDocument()
   })
+
+  it('renders ambience controls in the HUD and switches room lighting mode', () => {
+    render(<App />)
+    expect(screen.getByRole('region', { name: /Controlo de Iluminação e Ambiência/i })).toBeInTheDocument()
+
+    const dayBtn = screen.getByRole('button', { name: /Sempre Dia/i })
+    expect(dayBtn).toBeInTheDocument()
+
+    fireEvent.click(dayBtn)
+
+    // The desk lamp should now be turned off because it's daytime
+    const lamp = screen.getByTestId('dorm-desk-lamp')
+    expect(lamp).toHaveAttribute('data-lamp-on', 'false')
+
+    // Click Siempre Noite Aconchegante
+    const nightBtn = screen.getByRole('button', { name: /Sempre Noite Aconchegante/i })
+    fireEvent.click(nightBtn)
+    expect(lamp).toHaveAttribute('data-lamp-on', 'true')
+  })
 })

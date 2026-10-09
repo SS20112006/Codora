@@ -6,9 +6,11 @@ export const Stage1DormRoom: React.FC<Stage1DormRoomProps> = ({
   className = '',
   isFocusing = false,
   ambience = 'night',
+  isLampOn,
   slots = {},
   'data-testid': testId = 'stage1-dorm-room',
 }) => {
+  const lampActive = isLampOn ?? (ambience === 'night')
   return (
     <div
       data-testid={testId}
@@ -100,6 +102,30 @@ export const Stage1DormRoom: React.FC<Stage1DormRoomProps> = ({
             <stop offset="40%" stopColor="#f87171" />
             <stop offset="70%" stopColor="#dc2626" />
             <stop offset="100%" stopColor="#991b1b" />
+          </linearGradient>
+
+          {/* Desk Lamp Warm Radiant Light Gradient */}
+          <radialGradient id="lampGlowGrad" cx="50%" cy="20%" r="70%">
+            <stop offset="0%" stopColor="#fef08a" stopOpacity={isFocusing ? 0.6 : 0.45} />
+            <stop offset="40%" stopColor="#f59e0b" stopOpacity={isFocusing ? 0.35 : 0.22} />
+            <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+          </radialGradient>
+
+          <radialGradient id="lampDeskPoolGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#fef08a" stopOpacity="0.4" />
+            <stop offset="60%" stopColor="#f59e0b" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+          </radialGradient>
+
+          {/* Sunlight & Sunset Beams */}
+          <linearGradient id="daySunBeamGrad" x1="0%" y1="0%" x2="60%" y2="100%">
+            <stop offset="0%" stopColor="#fef9c3" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="#fef9c3" stopOpacity="0" />
+          </linearGradient>
+
+          <linearGradient id="sunsetBeamGrad" x1="0%" y1="0%" x2="60%" y2="100%">
+            <stop offset="0%" stopColor="#f97316" stopOpacity="0.22" />
+            <stop offset="100%" stopColor="#ea580c" stopOpacity="0" />
           </linearGradient>
 
           {/* Subtle Glow Filter */}
@@ -470,8 +496,14 @@ export const Stage1DormRoom: React.FC<Stage1DormRoomProps> = ({
               {slots.deskLamp}
             </g>
           ) : (
-            /* Classic Architect Desk Lamp */
-            <g id="default-desk-lamp" transform="translate(360, 270)">
+            /* Classic Architect Desk Lamp with Warm Night Illumination */
+            <g
+              id="default-desk-lamp"
+              data-testid="dorm-desk-lamp"
+              data-lamp-on={lampActive ? 'true' : 'false'}
+              transform="translate(360, 270)"
+              className="transition-all duration-700 ease-in-out"
+            >
               {/* Heavy Base */}
               <ellipse cx="20" cy="65" rx="14" ry="4" fill="#334155" stroke="#1e293b" strokeWidth="1.5" />
               {/* Angled Arms */}
@@ -479,13 +511,34 @@ export const Stage1DormRoom: React.FC<Stage1DormRoomProps> = ({
               <line x1="28" y1="35" x2="52" y2="25" stroke="#475569" strokeWidth="3" strokeLinecap="round" />
               <circle cx="28" cy="35" r="3" fill="#64748b" />
               {/* Lamp Shade Cone */}
-              <polygon points="50,15 72,25 60,35" fill="#f59e0b" stroke="#d97706" strokeWidth="1.5" />
-              {/* Warm Light Glow Cone */}
               <polygon
-                points="66,30 30,80 120,80"
-                fill="#fef08a"
-                opacity={isFocusing ? 0.25 : 0.12}
+                points="50,15 72,25 60,35"
+                fill={lampActive ? '#f59e0b' : '#475569'}
+                stroke={lampActive ? '#d97706' : '#334155'}
+                strokeWidth="1.5"
+                className="transition-colors duration-700"
+              />
+              {/* Lamp Bulb / Core Glow */}
+              {lampActive && (
+                <circle cx="64" cy="28" r="3.5" fill="#ffffff" filter="url(#glowFilter)" />
+              )}
+              {/* Warm Light Glow Cone cascading onto desk */}
+              <polygon
+                points="64,28 10,85 150,85"
+                fill="url(#lampGlowGrad)"
+                opacity={lampActive ? (isFocusing ? 0.95 : 0.75) : 0}
                 filter="url(#glowFilter)"
+                className="transition-opacity duration-700 ease-in-out pointer-events-none"
+              />
+              {/* Pool of Warm Light on Desk Surface */}
+              <ellipse
+                cx="80"
+                cy="78"
+                rx="65"
+                ry="12"
+                fill="url(#lampDeskPoolGrad)"
+                opacity={lampActive ? (isFocusing ? 0.85 : 0.55) : 0}
+                className="transition-opacity duration-700 ease-in-out pointer-events-none"
               />
             </g>
           )}
@@ -690,6 +743,63 @@ export const Stage1DormRoom: React.FC<Stage1DormRoomProps> = ({
             <ellipse cx="6" cy="0" rx="5" ry="1.5" fill="#cbd5e1" />
           </g>
         </g>
+
+        {/* ============================================================== */}
+        {/* 10. DYNAMIC ROOM LIGHTING & AMBIENCE OVERLAYS (Task 08)        */}
+        {/* ============================================================== */}
+        {/* Daytime Sunlight Stream from Window */}
+        <polygon
+          points="76,100 284,100 480,480 200,480"
+          fill="url(#daySunBeamGrad)"
+          opacity={ambience === 'day' ? 0.75 : 0}
+          className="pointer-events-none transition-opacity duration-700 ease-in-out"
+          data-testid="room-day-sunbeam"
+        />
+
+        {/* Sunset Golden Hour Beam Stream from Window */}
+        <polygon
+          points="76,100 284,100 500,480 180,480"
+          fill="url(#sunsetBeamGrad)"
+          opacity={ambience === 'sunset' ? 0.8 : 0}
+          className="pointer-events-none transition-opacity duration-700 ease-in-out"
+          data-testid="room-sunset-beam"
+        />
+
+        {/* Night Ambient Soft Tint */}
+        <rect
+          x="0"
+          y="0"
+          width="960"
+          height="540"
+          fill="#060913"
+          opacity={ambience === 'night' ? 0.18 : 0}
+          className="pointer-events-none transition-opacity duration-700 ease-in-out"
+          data-testid="room-night-overlay"
+        />
+
+        {/* Sunset Golden Hour Warmth Tint */}
+        <rect
+          x="0"
+          y="0"
+          width="960"
+          height="540"
+          fill="#f59e0b"
+          opacity={ambience === 'sunset' ? 0.08 : 0}
+          className="pointer-events-none transition-opacity duration-700 ease-in-out"
+          data-testid="room-sunset-overlay"
+        />
+
+        {/* Daylight Crisp Clarity Tint */}
+        <rect
+          x="0"
+          y="0"
+          width="960"
+          height="540"
+          fill="#ffffff"
+          opacity={ambience === 'day' ? 0.03 : 0}
+          className="pointer-events-none transition-opacity duration-700 ease-in-out"
+          data-testid="room-day-overlay"
+        />
       </svg>
     </div>
   )
