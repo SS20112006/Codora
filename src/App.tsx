@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import {
   Coins,
   Zap,
@@ -15,11 +15,52 @@ import {
   XCircle,
 } from 'lucide-react'
 import { usePomodoro } from './features/timer'
+import { useGameStore } from './features/state'
+import type { CareerRole, CareerStage } from './features/economy'
 
 export const App: React.FC = () => {
-  const [devCoins] = useState(0)
-  const [devXp] = useState(0)
-  const [activeUsers] = useState(0)
+  const profile = useGameStore((state) => state.profile)
+  const hydrate = useGameStore((state) => state.hydrate)
+
+  useEffect(() => {
+    hydrate()
+  }, [hydrate])
+
+  const devCoins = profile.devCoins
+  const devXp = profile.totalXp
+  const activeUsers = profile.activeUsers
+
+  const getRoleLabel = (role: CareerRole) => {
+    switch (role) {
+      case 'student':
+        return 'Estudante'
+      case 'intern':
+        return 'Estagiário'
+      case 'junior':
+        return 'Júnior'
+      case 'mid_level':
+        return 'Pleno'
+      case 'senior':
+        return 'Sénior'
+      case 'tech_lead':
+        return 'Tech Lead'
+      case 'indie_founder':
+        return 'Indie Founder'
+    }
+  }
+
+  const getStageLabel = (stage: CareerStage) => {
+    switch (stage) {
+      case 'stage_1_university':
+        return 'Fase 1: Quarto Universitário'
+      case 'stage_2_junior':
+        return 'Fase 2: Home Office Júnior'
+      case 'stage_3_coworking':
+        return 'Fase 3: Escritório Co-working'
+      case 'stage_4_penthouse':
+        return 'Fase 4: Penthouse Tech'
+    }
+  }
 
   const {
     status,
@@ -89,7 +130,7 @@ export const App: React.FC = () => {
                 Codora
               </h1>
               <p className="text-xs typography-text text-codora-text-muted">
-                Fase 1: Quarto Universitário
+                {getStageLabel(profile.stage)}
               </p>
             </div>
           </div>
@@ -105,7 +146,7 @@ export const App: React.FC = () => {
             <div className="flex items-center gap-2 bg-codora-bg/60 border border-codora-border px-3.5 py-1.5 rounded-lg text-sm">
               <Zap className="w-4 h-4 text-codora-xp" />
               <span className="font-semibold text-codora-text">{devXp}</span>
-              <span className="text-xs text-codora-text-muted">XP (Estudante)</span>
+              <span className="text-xs text-codora-text-muted">XP ({getRoleLabel(profile.role)})</span>
             </div>
 
             <div className="flex items-center gap-2 bg-codora-bg/60 border border-codora-border px-3.5 py-1.5 rounded-lg text-sm">
