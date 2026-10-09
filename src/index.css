@@ -39,3 +39,98 @@
   min-height: 44px;
   min-width: 44px;
 }
+
+/* ==========================================================================
+   Codora Avatar Animations (Task 07)
+   ========================================================================== */
+
+/* Fast Typing Rhythms for Coder Hands / Arms */
+@keyframes coder-typing-arm-left {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(-1.5deg);
+  }
+  100% {
+    transform: translateY(0.5px) rotate(0.8deg);
+  }
+}
+
+@keyframes coder-typing-arm-right {
+  0% {
+    transform: translateY(0.5px) rotate(0.8deg);
+  }
+  50% {
+    transform: translateY(-3.5px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(-0.5px) rotate(-1deg);
+  }
+}
+
+/* Subtle Concentration Head Bobbing */
+@keyframes coder-focus-head {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1.2px) rotate(0.8deg);
+  }
+}
+
+/* Relaxed Breathing for Torso & Shoulders during breaks */
+@keyframes coder-breathe {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.008);
+  }
+}
+
+/* Relaxed Resting Head (Peaceful posture) */
+@keyframes coder-resting-head {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1.5px) rotate(-1.5deg);
+  }
+}
+
+.animate-avatar-typing-left {
+  animation: coder-typing-arm-left 0.18s ease-in-out infinite alternate;
+  transform-origin: 468px 322px;
+}
+
+.animate-avatar-typing-right {
+  animation: coder-typing-arm-right 0.16s ease-in-out infinite alternate;
+  transform-origin: 472px 324px;
+}
+
+.animate-avatar-focus-head {
+  animation: coder-focus-head 1.4s ease-in-out infinite;
+  transform-origin: 470px 290px;
+}
+
+.animate-avatar-breathe {
+  animation: coder-breathe 3.5s ease-in-out infinite;
+  transform-origin: 465px 355px;
+}
+
+.animate-avatar-resting-head {
+  animation: coder-resting-head 4.2s ease-in-out infinite;
+  transform-origin: 470px 290px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-avatar-typing-left,
+  .animate-avatar-typing-right,
+  .animate-avatar-focus-head,
+  .animate-avatar-breathe,
+  .animate-avatar-resting-head {
+    animation: none !important;
+  }
+}
+

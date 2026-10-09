@@ -77,4 +77,14 @@ describe('Stage1DormRoom Scene Component', () => {
     const laptopActive = screen.getByTestId('dorm-laptop')
     expect(laptopActive).toHaveClass('is-focusing')
   })
+
+  it('renders default coder avatar and switches between typing and resting states', () => {
+    const { rerender } = render(<Stage1DormRoom isFocusing={false} />)
+    const avatar = screen.getByTestId('dorm-coder-avatar')
+    expect(avatar).toBeInTheDocument()
+    expect(avatar).toHaveAttribute('data-avatar-state', 'resting')
+
+    rerender(<Stage1DormRoom isFocusing={true} />)
+    expect(avatar).toHaveAttribute('data-avatar-state', 'coding')
+  })
 })

@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Stage1DormRoomProps } from './types'
+import { CoderAvatar } from '../avatar'
 
 export const Stage1DormRoom: React.FC<Stage1DormRoomProps> = ({
   className = '',
@@ -618,30 +619,13 @@ export const Stage1DormRoom: React.FC<Stage1DormRoomProps> = ({
             {slots.avatar}
           </g>
         ) : (
-          /* Default Atmospheric Silhouette / Cozy Coder Hoodie at work */
-          <g id="default-coder-avatar" opacity="0.85">
-            {/* Hoodie Body sitting on the chair */}
-            <path
-              d="M 445 365 C 438 335 448 315 470 305 C 492 315 500 335 495 365 Z"
-              fill="#1e293b"
-              stroke="#0f172a"
-              strokeWidth="2"
-            />
-            {/* Hoodie Hood / Head tilted towards laptop screen */}
-            <circle cx="474" cy="292" r="16" fill="#334155" stroke="#1e293b" strokeWidth="1.5" />
-            {/* Relaxed / Coding arms reaching forward to keyboard */}
-            <path
-              d="M 452 335 Q 470 348 488 338"
-              stroke="#334155"
-              strokeWidth="8"
-              strokeLinecap="round"
-              fill="none"
-            />
-            {/* Sneaker / relaxed feet under desk */}
-            <ellipse cx="455" cy="455" rx="10" ry="4" fill="#0f172a" />
-            <ellipse cx="485" cy="452" rx="10" ry="4" fill="#0f172a" />
-          </g>
+          <CoderAvatar
+            isFocusing={isFocusing}
+            hasHeadphones={Boolean(slots.headphones)}
+            data-testid="dorm-coder-avatar"
+          />
         )}
+
 
         {/* ============================================================== */}
         {/* 8. SODA CAN (Aluminum Can with Tab)                             */}
