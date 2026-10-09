@@ -64,6 +64,10 @@
   * **Gatilho de Desbloqueio & Curva de Níveis:**
     * A transição de cenário dá-se **automaticamente ao atingir os patamares de Nível de Carreira/XP**.
     * A transição da Fase 1 para a Fase 2 é mais rápida (para incentivar o novo jogador com a primeira grande conquista), aumentando progressivamente o tempo necessário entre as fases seguintes para manter uma progressão sustentada sem ser frustrante nem trivial.
+* [x] **Iluminação Dinâmica e Clima da Sala:** **Opção C — Tema Selecionável com Suporte a Tempo Real**.
+  * O jogador tem total controlo sobre a ambiência visual do quarto nas definições/HUD:
+    * Modo Automático: Segue o relógio real do computador (Dia, Entardecer/Golden Hour, Noite com candeeiro e estrelas).
+    * Modos Fixos Manuais: Permite fixar permanentemente o seu ambiente preferido (ex: "Sempre Noite Aconchegante", "Sempre Pôr do Sol", "Sempre Dia Claro").
 
 ---
 
@@ -119,4 +123,6 @@
     * Fase 3: Co-working / Startup premium com cafezito e projetos maiores.
     * Fase 4: Penthouse com vista de cidade, monitor ultrawide, vibe de coder de topo.
     * Desbloqueio: Progressão automática por XP, com ritmo rápido de Fase 1 para Fase 2 e desaceleração calculada para evitar frustração.
-* **Q11:** *(Em curso)*
+* **Q11 (Iluminação & Ciclo da Janela):** Relógio real vs Avanço por Pomodoro vs Tema selecionável.
+  * **Decisão do Utilizador:** Opção C — Tema selecionável nas opções, com suporte a acompanhar o relógio real ou fixar o ambiente favorito (ex: Sempre Noite Aconchegante).
+* **Q12:** *(Em curso)*
