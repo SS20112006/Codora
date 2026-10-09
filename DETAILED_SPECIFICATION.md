@@ -42,6 +42,9 @@
   * Projetos concluídos e lançados geram uma base acumulada de "Users Ativos / Servidores", produzindo um fluxo passivo de DevCoins ao longo do tempo.
   * **Retorno Offline ("Welcome Back"):** Ao fechar o navegador e regressar mais tarde, o jogador é recebido com uma janela com o resumo dos ganhos offline acumulados.
   * **Teto Máximo de Proteção:** Limite de tempo de ausência acumulável (ex: teto máximo de 8h a 12h) para preservar o equilíbrio da economia e garantir que o Pomodoro ativo continua a ser o motor de progressão essencial.
+* [x] **Arquitetura de Dados & Persistência:** **Opção B — Local-First com Abstração Pronta para Nuvem**.
+  * **Fase V1 (Custo Zero & Zero Atrito):** Persistência no navegador via `IndexedDB` / `LocalStorage`. Sem necessidade de registo prévio, arranque imediato, privacidade total, com exportação e importação manual de ficheiros de save em JSON.
+  * **Design Cloud-Ready:** A camada de persistência utiliza o padrão *Repository/Storage Adapter*, permitindo no futuro conectar um backend com autenticação e sincronização na cloud (ex: Supabase / Firebase / Postgres) sem necessidade de refatorar a lógica interna do jogo.
 
 ---
 
@@ -88,4 +91,6 @@
   * **Decisão do Utilizador:** Pacote completo disponível (Música Lo-Fi, Sons de Ambiente, SFX e Alerta de Pomodoro), acompanhado obrigatoriamente de um painel de controlo/mixer onde o utilizador pode ligar, desligar ou ajustar individualmente cada som (incluindo silenciar tudo).
 * **Q8 (Mecânica Idle & Ganhos Offline):** Rendimento passivo ao regressar vs apenas online vs sem moedas passivas.
   * **Decisão do Utilizador:** Opção A — Rendimento passivo offline clássico de idle game ("Welcome Back!"), com teto máximo configurado para preservar o balanceamento da economia.
-* **Q9:** *(Em curso)*
+* **Q9 (Persistência & Dados):** 100% Local-first estrito vs Local-first com arquitetura cloud-ready vs Login obrigatório.
+  * **Decisão do Utilizador:** Opção B — Local-first na v1 (sem atrito, sem registo, export/import JSON) com arquitetura em camadas preparada para ligar nuvem/auth no futuro.
+* **Q10:** *(Em curso)*
