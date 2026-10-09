@@ -21,12 +21,32 @@ export interface Inventory {
 
 export type WindowLightingMode = 'realtime' | 'day' | 'sunset' | 'night'
 
+export type LoFiTrackId = 'chill' | 'deepFocus' | 'midnight'
+
+export interface AmbientChannelsState {
+  rainVolume: number
+  rainMuted: boolean
+  rainActive: boolean
+  keyboardVolume: number
+  keyboardMuted: boolean
+  keyboardActive: boolean
+  cafeVolume: number
+  cafeMuted: boolean
+  cafeActive: boolean
+}
+
 export interface AudioSettings {
   masterVolume: number // 0 to 1
   musicVolume: number // 0 to 1
   ambientVolume: number // 0 to 1
   sfxVolume: number // 0 to 1
   isMuted: boolean
+  musicMuted?: boolean
+  ambientMuted?: boolean
+  sfxMuted?: boolean
+  isMusicPlaying?: boolean
+  musicTrack?: LoFiTrackId
+  ambient?: Partial<AmbientChannelsState>
 }
 
 export interface GameSettings {
@@ -129,6 +149,22 @@ export function createInitialGameState(name = 'Dev'): GameState {
         ambientVolume: 0.5,
         sfxVolume: 0.7,
         isMuted: false,
+        musicMuted: false,
+        ambientMuted: false,
+        sfxMuted: false,
+        isMusicPlaying: false,
+        musicTrack: 'chill',
+        ambient: {
+          rainVolume: 0.5,
+          rainMuted: false,
+          rainActive: false,
+          keyboardVolume: 0.5,
+          keyboardMuted: false,
+          keyboardActive: false,
+          cafeVolume: 0.4,
+          cafeMuted: false,
+          cafeActive: false,
+        },
       },
       lightingMode: 'realtime',
       timer: { ...DEFAULT_TIMER_CONFIG },

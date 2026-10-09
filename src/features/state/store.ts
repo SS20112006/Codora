@@ -387,15 +387,36 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     },
 
     updateAudioSettings: (partial: Partial<AudioSettings>) => {
-      set((state) => ({
-        settings: {
-          ...state.settings,
-          audio: {
-            ...state.settings.audio,
-            ...partial,
+      set((state) => {
+        const currentAmbient = state.settings.audio.ambient
+        const nextAmbient = partial.ambient
+          ? {
+              ...(currentAmbient ?? {
+                rainVolume: 0.5,
+                rainMuted: false,
+                rainActive: false,
+                keyboardVolume: 0.5,
+                keyboardMuted: false,
+                keyboardActive: false,
+                cafeVolume: 0.4,
+                cafeMuted: false,
+                cafeActive: false,
+              }),
+              ...partial.ambient,
+            }
+          : currentAmbient
+
+        return {
+          settings: {
+            ...state.settings,
+            audio: {
+              ...state.settings.audio,
+              ...partial,
+              ...(nextAmbient ? { ambient: nextAmbient } : {}),
+            },
           },
-        },
-      }))
+        }
+      })
     },
 
     setLightingMode: (mode: WindowLightingMode) => {

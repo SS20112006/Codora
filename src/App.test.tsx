@@ -126,6 +126,27 @@ describe('App Core Component', () => {
     // Project should now be active
     expect(screen.getByText('Projeto Ativo')).toBeInTheDocument()
   })
+
+  it('opens audio mixer modal via HUD shortcut and closes it', async () => {
+    render(<App />)
+
+    expect(screen.queryByTestId('audio-mixer-modal')).not.toBeInTheDocument()
+
+    // Click "Áudio" shortcut on top hud bar
+    const audioShortcut = screen.getByRole('button', { name: 'Áudio' })
+    fireEvent.click(audioShortcut)
+
+    expect(screen.getByTestId('audio-mixer-modal')).toBeInTheDocument()
+    expect(screen.getByRole('dialog', { name: /Painel de Áudio e Misturador/i })).toBeInTheDocument()
+
+    // Close mixer modal
+    const closeBtn = screen.getByRole('button', { name: 'Fechar Misturador' })
+    fireEvent.click(closeBtn)
+
+    await waitFor(() => {
+      expect(screen.queryByTestId('audio-mixer-modal')).not.toBeInTheDocument()
+    })
+  })
 })
 
 

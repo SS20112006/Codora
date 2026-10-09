@@ -5,12 +5,15 @@ import { Stage1DormRoom } from './features/room'
 import { useAtmosphere } from './features/atmosphere'
 import { TopHudBar, HudOverlay } from './features/hud'
 import { ContractsDrawer } from './features/contracts'
+import { AudioMixerModal, useAudio } from './features/audio'
 
 export const App: React.FC = () => {
   const profile = useGameStore((state) => state.profile)
   const activeProject = useGameStore((state) => state.activeProject)
   const hydrate = useGameStore((state) => state.hydrate)
   const [isContractsDrawerOpen, setIsContractsDrawerOpen] = useState(false)
+  const [isAudioMixerOpen, setIsAudioMixerOpen] = useState(false)
+  const { playSfx } = useAudio()
 
   useEffect(() => {
     hydrate()
@@ -18,6 +21,13 @@ export const App: React.FC = () => {
 
   const { effectiveAmbience } = useAtmosphere()
   const pomodoro = usePomodoro()
+
+  // Trigger gentle pomodoro chime alarm when a session completes
+  useEffect(() => {
+    if (pomodoro.status === 'completed') {
+      playSfx('alarm')
+    }
+  }, [pomodoro.status, playSfx])
 
   return (
     <div className="w-screen h-screen overflow-hidden bg-codora-bg text-codora-text font-sans relative select-none selection:bg-amber-500/20 selection:text-amber-300">
@@ -37,6 +47,8 @@ export const App: React.FC = () => {
           onShortcutClick={(id) => {
             if (id === 'contracts') {
               setIsContractsDrawerOpen(true)
+            } else if (id === 'audio') {
+              setIsAudioMixerOpen(true)
             }
           }}
         />
@@ -58,8 +70,15 @@ export const App: React.FC = () => {
         isOpen={isContractsDrawerOpen}
         onClose={() => setIsContractsDrawerOpen(false)}
         onConfirmContract={(contract) => {
+          playSfx('coin')
           pomodoro.startSessionWithDuration(contract.durationMinutes)
         }}
+      />
+
+      {/* 5. In-Game Audio Mixer Modal */}
+      <AudioMixerModal
+        isOpen={isAudioMixerOpen}
+        onClose={() => setIsAudioMixerOpen(false)}
       />
     </div>
   )
