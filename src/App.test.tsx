@@ -27,4 +27,30 @@ describe('App Core Component', () => {
     expect(screen.getByRole('button', { name: /Pausar Sessão/i })).toBeInTheDocument()
     expect(screen.getByText(/Sprint Ativo/i)).toBeInTheDocument()
   })
+
+  it('renders timer countdown and handles emergency pause', () => {
+    render(<App />)
+    expect(screen.getByText('25:00')).toBeInTheDocument()
+    expect(screen.getByText('Foco (Sprint)')).toBeInTheDocument()
+
+    // Start sprint
+    fireEvent.click(screen.getByRole('button', { name: /Iniciar Sprint Gratuito/i }))
+
+    // Emergency pause button should now be available
+    const emergencyBtn = screen.getByRole('button', { name: /Pausa de Emergência/i })
+    expect(emergencyBtn).toBeInTheDocument()
+
+    fireEvent.click(emergencyBtn)
+    expect(screen.getByText(/Pausa de Emergência:.*restantes!/i)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Retomar da Emergência/i })).toBeInTheDocument()
+  })
+
+  it('toggles hardcore mode', () => {
+    render(<App />)
+    const hardcoreBtn = screen.getByRole('button', { name: /Modo Hardcore: Desativado/i })
+    expect(hardcoreBtn).toBeInTheDocument()
+
+    fireEvent.click(hardcoreBtn)
+    expect(screen.getByRole('button', { name: /Modo Hardcore: ATIVADO/i })).toBeInTheDocument()
+  })
 })
