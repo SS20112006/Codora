@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  /* Codora Custom Color Palette */
+  --color-codora-bg: #090a0f;
+  --color-codora-surface: #12141e;
+  --color-codora-surface-hover: #1a1e2d;
+  --color-codora-border: #23283c;
+  --color-codora-border-focus: #3b82f6;
+
+  --color-codora-coin: #f59e0b;
+  --color-codora-coin-glow: #fbbf24;
+  --color-codora-xp: #8b5cf6;
+  --color-codora-xp-glow: #a78bfa;
+  --color-codora-users: #10b981;
+  --color-codora-focus: #f97316;
+
+  --color-codora-text: #f8fafc;
+  --color-codora-text-muted: #94a3b8;
+}
+
+/* Apple HIG Optical Tracking Adjustments */
+.typography-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.022em;
+}
+
+.typography-text {
+  font-family: var(--font-text);
+  letter-spacing: -0.011em;
+}
+
+/* HIG Touch Target minimum 44x44px */
+.min-touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
