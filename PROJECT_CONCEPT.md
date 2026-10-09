@@ -1,11 +1,11 @@
-# DevFocus Tycoon (Nome Provisório)
+# Codora
 > **O Idle/Sim Game de Desenvolvimento de Software Alimentado por Foco Real**
 
 ---
 
 ## 1. Visão Geral do Produto
 
-O **DevFocus Tycoon** é um jogo de simulação e progressão estilo *Idle / Tycoon* (inspirado na dinâmica de progressão e personalização de sala de jogos como *PewDiePie's Tuber Simulator* e *Game Dev Tycoon*), mas onde a moeda de "mineração" e o motor de evolução do jogo é o **foco e produtividade no mundo real (Pomodoro)**.
+O **Codora** é um jogo de simulação e progressão estilo *Idle / Tycoon* (inspirado na dinâmica de progressão e personalização de sala de jogos como *PewDiePie's Tuber Simulator* e *Game Dev Tycoon*), mas onde a moeda de "mineração" e o motor de evolução do jogo é o **foco e produtividade no mundo real (Pomodoro)**.
 
 O objetivo é transformar blocos de estudo e trabalho de programação num ciclo de jogo viciante, gratificante e com consequências reais, desenhado para ser **100% gratuito (custo zero)**, **open-source** e uma peça de destaque num **portfólio de engenharia de software**.
 
