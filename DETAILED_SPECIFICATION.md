@@ -35,6 +35,9 @@
   * **Projetos Pré-Definidos Sem Atrito:** O utilizador não precisa de digitar texto; o jogo apresenta uma seleção dinâmica de projetos prontos a escolher, mantendo o fluxo rápido e gamificado.
   * **Contextualização com o Nível/Fase Atual:** Os projetos refletem a realidade da fase do jogador. Na fase de Universidade: trabalhos académicos, scripts de automação simples, pequenos bicos de freelance para amigos. Fases mais avançadas desbloqueiam MVPs de startups, sistemas de alta disponibilidade, contratos corporativos internacionais.
   * **Tomada de Decisão Estratégica (Mercado Dinâmico):** Os projetos disponíveis variam em duração, custo de entrada e rentabilidade (alguns com excelente ROI, outros de menor risco), dando ao jogador o poder de escolher a melhor oportunidade de investimento de tempo e moedas.
+* [x] **Ecossistema de Áudio Completo com Painel de Controlo Granular:**
+  * **Módulos Incluídos:** Música de Foco (Lo-Fi Beats relaxantes), Sons de Ambiente (chuva, café, teclado mecânico suave), Efeitos Sonoros de Interface (moedas, level up, cliques táteis) e Alerta Sonoro de Conclusão de Pomodoro.
+  * **Mixer de Controlo Total pelo Utilizador:** Painel de áudio acessível onde o utilizador pode ligar/desligar de forma 100% independente qualquer um dos canais (ex: desligar a música mas manter a chuva; desligar os alertas; silenciar tudo com um único clique para quem já usa Spotify ou prefere silêncio absoluto).
 
 ---
 
@@ -77,4 +80,6 @@
   * **Decisão do Utilizador:** Roupas atualizam com os níveis de carreira (hoodies no início, camisas nos níveis altos); slots de cenário fixos mas com mapas/ambientes completamente novos a cada patamar; acessórios comprados equipam-se visualmente (ex: headphones no avatar, segundo monitor na secretária).
 * **Q6 (Natureza dos Projetos/Sprints):** Projetos do jogo vs tarefas reais escritas pelo utilizador.
   * **Decisão do Utilizador:** Estilo *Tuber Simulator* — projetos pré-definidos contextuais com a fase do jogador (trabalhos da faculdade/pequenos freelances na universidade, escalando para projetos maiores), com custos e retornos dinâmicos para escolha estratégica sem necessidade de digitação.
-* **Q7:** *(Em curso)*
+* **Q7 (Áudio, Ambiente e Música):** Presença de som e flexibilidade de controlo.
+  * **Decisão do Utilizador:** Pacote completo disponível (Música Lo-Fi, Sons de Ambiente, SFX e Alerta de Pomodoro), acompanhado obrigatoriamente de um painel de controlo/mixer onde o utilizador pode ligar, desligar ou ajustar individualmente cada som (incluindo silenciar tudo).
+* **Q8:** *(Em curso)*
