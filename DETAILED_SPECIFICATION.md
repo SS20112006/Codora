@@ -31,6 +31,10 @@
   * **Vestuário Evolutivo por Patamar de Carreira:** O guarda-roupa do avatar atualiza-se organicamente consoante o nível e o cenário (ex: fase inicial de estudante = hoodies, calças casuais; fases profissionais avançadas = camisas, polo, smart-casual).
   * **Cenários / Mapas Transitáveis:** Slots da sala mantêm a consistência posicional, mas ao completar um ciclo de carreira, o cenário muda por completo (ex: Quarto de Estudante $\rightarrow$ Apartamento Próprio $\rightarrow$ Escritório de Startup $\rightarrow$ Tech Studio).
   * **Acessórios Visíveis na Loja:** Itens comprados refletem-se visual e imediatamente no ecrã — acessórios pessoais no avatar (ex: headphones na cabeça) e melhorias de hardware no setup (ex: adicionar segundo monitor, caneca na mesa, lâmpada de monitor), concedendo bónus de rendimento e XP.
+* [x] **Sistema de Contratos & Projetos (Estilo Tuber Simulator):**
+  * **Projetos Pré-Definidos Sem Atrito:** O utilizador não precisa de digitar texto; o jogo apresenta uma seleção dinâmica de projetos prontos a escolher, mantendo o fluxo rápido e gamificado.
+  * **Contextualização com o Nível/Fase Atual:** Os projetos refletem a realidade da fase do jogador. Na fase de Universidade: trabalhos académicos, scripts de automação simples, pequenos bicos de freelance para amigos. Fases mais avançadas desbloqueiam MVPs de startups, sistemas de alta disponibilidade, contratos corporativos internacionais.
+  * **Tomada de Decisão Estratégica (Mercado Dinâmico):** Os projetos disponíveis variam em duração, custo de entrada e rentabilidade (alguns com excelente ROI, outros de menor risco), dando ao jogador o poder de escolher a melhor oportunidade de investimento de tempo e moedas.
 
 ---
 
@@ -71,4 +75,6 @@
   * **Decisão do Utilizador:** Opção A — Cenário Vivo Imersivo com HUD Flutuante e menus em painéis/drawers translúcidos.
 * **Q5 (Avatar & Slots de Sala):** Customização de personagem, transição de cenários e itens comprados.
   * **Decisão do Utilizador:** Roupas atualizam com os níveis de carreira (hoodies no início, camisas nos níveis altos); slots de cenário fixos mas com mapas/ambientes completamente novos a cada patamar; acessórios comprados equipam-se visualmente (ex: headphones no avatar, segundo monitor na secretária).
-* **Q6:** *(Em curso)*
+* **Q6 (Natureza dos Projetos/Sprints):** Projetos do jogo vs tarefas reais escritas pelo utilizador.
+  * **Decisão do Utilizador:** Estilo *Tuber Simulator* — projetos pré-definidos contextuais com a fase do jogador (trabalhos da faculdade/pequenos freelances na universidade, escalando para projetos maiores), com custos e retornos dinâmicos para escolha estratégica sem necessidade de digitação.
+* **Q7:** *(Em curso)*
