@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import { usePomodoro } from './features/timer'
 import { useGameStore } from './features/state'
+import { Stage1DormRoom } from './features/room'
 import type { CareerRole, CareerStage } from './features/economy'
 
 export const App: React.FC = () => {
@@ -158,8 +159,16 @@ export const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Main Content / Stage Placeholder */}
+      {/* Main Content / Stage & Controls */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-6 flex flex-col gap-6 justify-center">
+        {/* Stage 1 Dorm Room 2D SVG Scene */}
+        <section aria-label="Cenário do Quarto Universitário" className="w-full">
+          <Stage1DormRoom
+            isFocusing={status === 'running'}
+            ambience="night"
+          />
+        </section>
+
         <section className="bg-codora-surface/60 border border-codora-border rounded-2xl p-8 backdrop-blur-sm text-center relative overflow-hidden">
           <div className="max-w-2xl mx-auto flex flex-col items-center gap-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium">

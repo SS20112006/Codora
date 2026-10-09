@@ -53,4 +53,12 @@ describe('App Core Component', () => {
     fireEvent.click(hardcoreBtn)
     expect(screen.getByRole('button', { name: /Modo Hardcore: ATIVADO/i })).toBeInTheDocument()
   })
+
+  it('renders the Stage 1 college dorm room scene', () => {
+    render(<App />)
+    expect(
+      screen.getByRole('img', { name: /Dormitório Universitário.*The Social Network/i })
+    ).toBeInTheDocument()
+    expect(screen.getByTestId('stage1-dorm-room')).toBeInTheDocument()
+  })
 })
