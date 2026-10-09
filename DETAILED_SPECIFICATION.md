@@ -17,6 +17,7 @@
 * [x] **Nome do Projeto:** Codora (sem sufixos ou nomes secundários).
 * [x] **Processo de Alinhamento:** Perguntas sequenciais, uma a uma, cobrindo todos os detalhes visuais, mecânicos e arquiteturais antes de avançar para código.
 * [x] **Perspetiva Visual do Cenário:** **Vista Frontal / Corte Lateral 2D (Side-view Flat / Estilo Lofi Girl)**. O quarto é visto de perfil, com linhas horizontais/verticais limpas, avatar de perfil/semi-perfil a programar na secretária, janela de fundo com ciclo de luz e parede modular para prateleiras/posters. Facilita a responsividade perfeita entre resoluções.
+* [x] **Modo de Foco & Tolerância a Pausas:** **Configurável pelo Utilizador**. O utilizador decide antes do sprint ou nas preferências se prefere jogar no modo estrito/sem pausas (*Hardcore*) ou no modo com direito a *Pausa de Emergência* cronometrada (ex: 3 a 5 min para imprevistos). O jogo não impõe um único formato rígido, adaptando-se à rotina de cada pessoa.
 
 ---
 
@@ -49,4 +50,6 @@
 ## 4. Histórico de Perguntas & Respostas
 * **Q1 (Perspetiva Visual):** Isométrica (2.5D) vs Corte Lateral 2D (Side-view Flat).
   * **Decisão do Utilizador:** Opção B — Vista Frontal / Corte Lateral 2D (Side-view Flat / Estilo Lofi Girl).
-* **Q2:** *(Em curso)*
+* **Q2 (Interrupções & Pausa de Emergência):** Sem pausas (Hardcore) vs Pausa com tempo limite vs Configurável pelo jogador.
+  * **Decisão do Utilizador:** Configurável pelo jogador — o utilizador escolhe se quer permitir pausas de emergência ou jogar sem pausas.
+* **Q3:** *(Em curso)*
