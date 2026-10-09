@@ -68,6 +68,10 @@
   * O jogador tem total controlo sobre a ambiência visual do quarto nas definições/HUD:
     * Modo Automático: Segue o relógio real do computador (Dia, Entardecer/Golden Hour, Noite com candeeiro e estrelas).
     * Modos Fixos Manuais: Permite fixar permanentemente o seu ambiente preferido (ex: "Sempre Noite Aconchegante", "Sempre Pôr do Sol", "Sempre Dia Claro").
+* [x] **Gamificação: Streaks, Missões Diárias & Conquistas com Recompensa:**
+  * **Streak de Dias Consecutivos:** Fazer pelo menos 1 sprint por dia avança o streak e concede bónus cumulativo em moedas e XP.
+  * **Missões Diárias (3 Daily Quests):** Desafios rápidos que renovam a cada 24h para manter o hábito diário fresco e gratificante.
+  * **Conquistas & Troféus Úteis:** Conquistas desbloqueiam itens/troféus físicos na estante do quarto e pagam **XP de Carreira significativo + bónus de DevCoins**, tornando os objetivos essenciais para acelerar a subida de nível.
 
 ---
 
@@ -125,4 +129,6 @@
     * Desbloqueio: Progressão automática por XP, com ritmo rápido de Fase 1 para Fase 2 e desaceleração calculada para evitar frustração.
 * **Q11 (Iluminação & Ciclo da Janela):** Relógio real vs Avanço por Pomodoro vs Tema selecionável.
   * **Decisão do Utilizador:** Opção C — Tema selecionável nas opções, com suporte a acompanhar o relógio real ou fixar o ambiente favorito (ex: Sempre Noite Aconchegante).
-* **Q12:** *(Em curso)*
+* **Q12 (Gamificação & Retenção Diária):** Streaks, Missões Diárias e Conquistas.
+  * **Decisão do Utilizador:** Incluir os 3 elementos (Streak de dias consecutivos, 3 Missões Diárias e Troféus visuais na estante), com as conquistas a concederem recompensas tangíveis em XP de Carreira e DevCoins para acelerar o progresso.
+* **Q13:** *(Em curso)*
