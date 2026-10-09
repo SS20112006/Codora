@@ -16,6 +16,7 @@
 ## 2. Decisões Fechadas & Validadas
 * [x] **Nome do Projeto:** Codora (sem sufixos ou nomes secundários).
 * [x] **Processo de Alinhamento:** Perguntas sequenciais, uma a uma, cobrindo todos os detalhes visuais, mecânicos e arquiteturais antes de avançar para código.
+* [x] **Perspetiva Visual do Cenário:** **Vista Frontal / Corte Lateral 2D (Side-view Flat / Estilo Lofi Girl)**. O quarto é visto de perfil, com linhas horizontais/verticais limpas, avatar de perfil/semi-perfil a programar na secretária, janela de fundo com ciclo de luz e parede modular para prateleiras/posters. Facilita a responsividade perfeita entre resoluções.
 
 ---
 
@@ -46,4 +47,6 @@
 ---
 
 ## 4. Histórico de Perguntas & Respostas
-* **Q1:** *(Em curso)*
+* **Q1 (Perspetiva Visual):** Isométrica (2.5D) vs Corte Lateral 2D (Side-view Flat).
+  * **Decisão do Utilizador:** Opção B — Vista Frontal / Corte Lateral 2D (Side-view Flat / Estilo Lofi Girl).
+* **Q2:** *(Em curso)*
