@@ -29,6 +29,8 @@ function createMockPomodoro(overrides: Partial<UsePomodoroReturn> = {}): UsePomo
     abandon: vi.fn(),
     setMode: vi.fn(),
     setHardcore: vi.fn(),
+    updateConfig: vi.fn(),
+    startSessionWithDuration: vi.fn(),
     ...overrides,
   }
 }

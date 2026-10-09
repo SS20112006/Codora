@@ -6,6 +6,7 @@ import type { HudOverlayProps } from './types'
 export const HudOverlay: React.FC<HudOverlayProps> = ({
   pomodoro,
   activeProject,
+  onOpenContracts,
   className = '',
 }) => {
   return (
@@ -23,6 +24,7 @@ export const HudOverlay: React.FC<HudOverlayProps> = ({
           timeLeft={pomodoro.timeLeft}
           duration={pomodoro.duration}
           formattedTime={pomodoro.formattedTime}
+          onOpenContracts={onOpenContracts}
         />
       </div>
 

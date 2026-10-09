@@ -18,6 +18,8 @@ export interface UsePomodoroReturn extends TimerSnapshot {
   abandon: () => void
   setMode: (mode: TimerMode) => void
   setHardcore: (isHardcore: boolean) => void
+  updateConfig: (config: Partial<TimerConfig>) => void
+  startSessionWithDuration: (durationMinutes: number) => boolean
   formattedTime: string
   formattedEmergencyTime: string
 }
@@ -62,6 +64,18 @@ export function usePomodoro(
     (isHardcore: boolean) => client.updateConfig({ isHardcore }),
     [client]
   )
+  const updateConfig = useCallback(
+    (cfg: Partial<TimerConfig>) => client.updateConfig(cfg),
+    [client]
+  )
+  const startSessionWithDuration = useCallback(
+    (durationMinutes: number) => {
+      client.updateConfig({ focusDuration: durationMinutes * 60 })
+      client.setMode('focus')
+      return client.start()
+    },
+    [client]
+  )
 
   const formattedTime = useMemo(
     () => formatSecondsToMMSS(snapshot.timeLeft),
@@ -84,7 +98,10 @@ export function usePomodoro(
     abandon,
     setMode,
     setHardcore,
+    updateConfig,
+    startSessionWithDuration,
     formattedTime,
     formattedEmergencyTime,
   }
 }
+

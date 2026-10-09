@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import App from './App'
 
 describe('App Core Component', () => {
@@ -80,4 +80,52 @@ describe('App Core Component', () => {
     fireEvent.click(nightBtn)
     expect(lamp).toHaveAttribute('data-lamp-on', 'true')
   })
+
+  it('opens contracts drawer via HUD shortcut and closes it', async () => {
+    render(<App />)
+
+    expect(screen.queryByTestId('contracts-drawer')).not.toBeInTheDocument()
+
+    // Click "Projetos" shortcut on top hud bar
+    const contractsShortcut = screen.getByRole('button', { name: 'Projetos' })
+    fireEvent.click(contractsShortcut)
+
+    expect(screen.getByTestId('contracts-drawer')).toBeInTheDocument()
+    expect(screen.getByRole('dialog', { name: /Mercado de Contratos e Staking/i })).toBeInTheDocument()
+
+    // Close drawer
+    const closeBtn = screen.getByTestId('btn-close-contracts-drawer')
+    fireEvent.click(closeBtn)
+    await waitFor(() => {
+      expect(screen.queryByTestId('contracts-drawer')).not.toBeInTheDocument()
+    })
+  })
+
+  it('opens contracts drawer from status card and selects contract to start staking pomodoro', async () => {
+    render(<App />)
+
+    // Open drawer via status card button
+    const openCardBtn = screen.getByTestId('btn-open-contracts-card')
+    fireEvent.click(openCardBtn)
+
+    expect(screen.getByTestId('contracts-drawer')).toBeInTheDocument()
+
+    // Select the first free or available contract
+    const selectButtons = screen.getAllByRole('button', {
+      name: /(Bloquear .* e Iniciar Pomodoro|Iniciar Projeto Grátis)/i,
+    })
+    expect(selectButtons.length).toBeGreaterThan(0)
+
+    fireEvent.click(selectButtons[0]!)
+
+    // Drawer should close
+    await waitFor(() => {
+      expect(screen.queryByTestId('contracts-drawer')).not.toBeInTheDocument()
+    })
+
+    // Project should now be active
+    expect(screen.getByText('Projeto Ativo')).toBeInTheDocument()
+  })
 })
+
+

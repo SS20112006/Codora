@@ -32,11 +32,14 @@ export interface ProjectStatusCardProps {
   timeLeft: number
   duration: number
   formattedTime: string
+  onOpenContracts?: () => void
   className?: string
 }
 
 export interface HudOverlayProps {
   pomodoro: UsePomodoroReturn
   activeProject: ActiveProjectState | null
+  onOpenContracts?: () => void
   className?: string
 }
+

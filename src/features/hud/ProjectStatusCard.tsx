@@ -20,6 +20,7 @@ export const ProjectStatusCard: React.FC<ProjectStatusCardProps> = ({
   timeLeft,
   duration,
   formattedTime,
+  onOpenContracts,
   className = '',
 }) => {
   const progressPercent =
@@ -177,6 +178,21 @@ export const ProjectStatusCard: React.FC<ProjectStatusCardProps> = ({
           />
         </div>
       </div>
+
+      {/* Open Contracts Market Action */}
+      {onOpenContracts && (
+        <div className="mt-3 pt-2 border-t border-codora-border/60">
+          <button
+            type="button"
+            data-testid="btn-open-contracts-card"
+            onClick={onOpenContracts}
+            className="min-touch-target w-full px-3 py-2 rounded-xl text-xs font-semibold bg-codora-bg/80 hover:bg-amber-500/10 border border-codora-border hover:border-amber-500/30 text-codora-text-muted hover:text-amber-300 flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer"
+          >
+            <Briefcase className="w-3.5 h-3.5 text-amber-400" />
+            <span>{activeProject ? 'Trocar Contrato' : 'Selecionar Contrato & Staking'}</span>
+          </button>
+        </div>
+      )}
     </article>
   )
 }
