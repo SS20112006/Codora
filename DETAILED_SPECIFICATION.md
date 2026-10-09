@@ -72,6 +72,14 @@
   * **Streak de Dias Consecutivos:** Fazer pelo menos 1 sprint por dia avança o streak e concede bónus cumulativo em moedas e XP.
   * **Missões Diárias (3 Daily Quests):** Desafios rápidos que renovam a cada 24h para manter o hábito diário fresco e gratificante.
   * **Conquistas & Troféus Úteis:** Conquistas desbloqueiam itens/troféus físicos na estante do quarto e pagam **XP de Carreira significativo + bónus de DevCoins**, tornando os objetivos essenciais para acelerar a subida de nível.
+* [x] **Stack Tecnológica Oficial:**
+  * **Core Web:** React 19 + TypeScript + Vite.
+  * **Estilização & Motion:** Tailwind CSS + Framer Motion.
+  * **Gráficos & Arte:** Componentes SVG Modulares em React DOM com animações via CSS keyframes.
+  * **Engine Temporal:** Dedicated Web Worker (imune ao throttling de abas em background).
+  * **Estado & Economia:** Zustand + Módulos Puros TypeScript com testes em Vitest (TDD).
+  * **Persistência:** Local-First (IndexedDB / LocalStorage) com arquitetura Cloud-Ready (padrão Repository) e export/import JSON.
+  * **Hospedagem & CI/CD:** Vercel / Cloudflare Pages (custo zero permanente).
 
 ---
 
@@ -131,4 +139,6 @@
   * **Decisão do Utilizador:** Opção C — Tema selecionável nas opções, com suporte a acompanhar o relógio real ou fixar o ambiente favorito (ex: Sempre Noite Aconchegante).
 * **Q12 (Gamificação & Retenção Diária):** Streaks, Missões Diárias e Conquistas.
   * **Decisão do Utilizador:** Incluir os 3 elementos (Streak de dias consecutivos, 3 Missões Diárias e Troféus visuais na estante), com as conquistas a concederem recompensas tangíveis em XP de Carreira e DevCoins para acelerar o progresso.
-* **Q13:** *(Em curso)*
+* **Q13 (Stack Tecnológica & Arquitetura):** Validação de React 19 + TypeScript + Vite + Tailwind + SVG DOM + Web Worker + Zustand + Vitest.
+  * **Decisão do Utilizador:** Confirmado e aprovado integralmente.
+* **Q14:** *(Em curso)*
