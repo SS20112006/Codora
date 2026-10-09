@@ -83,29 +83,32 @@
 
 ---
 
-## 3. Backlog Funcional & Módulos em Definição
-*(Secção atualizada à medida que as decisões forem tomadas)*
+## 3. Backlog Oficial de Issues no GitHub (1 Tarefa por Conversa)
 
-### 3.1. Core Loop & Sessão Pomodoro
-* *(Em definição)*
+Todos os itens foram mapeados, dimensionados e criados no repositório GitHub como **Issues sequenciais**:
 
-### 3.2. Economia, Moedas & Staking
-* *(Em definição)*
-
-### 3.3. Visual da Sala, Avatar & Estilo Gráfico
-* *(Em definição)*
-
-### 3.4. Loja, Upgrades & Inventário
-* *(Em definição)*
-
-### 3.5. Carreira, Níveis & Ambientes
-* *(Em definição)*
-
-### 3.6. Áudio & Atmosfera
-* *(Em definição)*
-
-### 3.7. Persistência, Dados & Exportação
-* *(Em definição)*
+| Issue | Tarefa | Módulo | Descrição Resumida |
+| :---: | :--- | :--- | :--- |
+| [#1](https://github.com/SS20112006/Codora/issues/1) | **Task 01** | `core` | Setup do projeto (Vite + React 19 + TypeScript + Tailwind CSS + Vitest) |
+| [#2](https://github.com/SS20112006/Codora/issues/2) | **Task 02** | `timer` | Motor Pomodoro Web Worker imune a drift (Pausa de Emergência + Hardcore) |
+| [#3](https://github.com/SS20112006/Codora/issues/3) | **Task 03** | `economy` | Fórmulas matemáticas de Staking, ROI, XP e proteção de falência (TDD) |
+| [#4](https://github.com/SS20112006/Codora/issues/4) | **Task 04** | `state` | Zustand Store com persistência Local-First Cloud-Ready (IndexedDB/JSON) |
+| [#5](https://github.com/SS20112006/Codora/issues/5) | **Task 05** | `contracts` | Catálogo de contratos e projetos rotativos (estilo *Tuber Simulator*) |
+| [#6](https://github.com/SS20112006/Codora/issues/6) | **Task 06** | `view` | Palco Visual Fase 1: Quarto universitário *The Social Network* em SVG 2D |
+| [#7](https://github.com/SS20112006/Codora/issues/7) | **Task 07** | `avatar` | Avatar do programador em SVG com animações CSS de digitação e pausa |
+| [#8](https://github.com/SS20112006/Codora/issues/8) | **Task 08** | `atmosphere`| Iluminação dinâmica e modos selecionáveis da janela (Dia/Pôr do Sol/Noite) |
+| [#9](https://github.com/SS20112006/Codora/issues/9) | **Task 09** | `hud` | HUD flutuante imersivo e relógio Pomodoro integrado na cena |
+| [#10](https://github.com/SS20112006/Codora/issues/10) | **Task 10** | `ui` | Drawer translúcido (*glassmorphism*) para seleção e staking de contratos |
+| [#11](https://github.com/SS20112006/Codora/issues/11) | **Task 11** | `audio` | Suite de áudio completa (Música Lo-Fi, Sons de Ambiente, SFX) e Mixer |
+| [#12](https://github.com/SS20112006/Codora/issues/12) | **Task 12** | `shop` | Loja de upgrades e acessórios equipáveis visíveis (headphones, 2º monitor) |
+| [#13](https://github.com/SS20112006/Codora/issues/13) | **Task 13** | `gamification`| Sistema de Streak diário e 3 Missões Diárias (*Daily Quests*) |
+| [#14](https://github.com/SS20112006/Codora/issues/14) | **Task 14** | `achievements`| Conquistas de carreira e estante de troféus com prémios em XP e moedas |
+| [#15](https://github.com/SS20112006/Codora/issues/15) | **Task 15** | `idle` | Rendimento passivo offline e modal de boas-vindas (*Welcome Back*) |
+| [#16](https://github.com/SS20112006/Codora/issues/16) | **Task 16** | `stages` | Fase 2: Home Office de Júnior, contratos corporativos e novas roupas |
+| [#17](https://github.com/SS20112006/Codora/issues/17) | **Task 17** | `stages` | Fase 3: Escritório de Co-working / Startup, projetos avançados e smart-casual |
+| [#18](https://github.com/SS20112006/Codora/issues/18) | **Task 18** | `stages` | Fase 4: Penthouse Tech Headquarters, setup ultrawide e contratos founder |
+| [#19](https://github.com/SS20112006/Codora/issues/19) | **Task 19** | `settings` | Painel de definições, export/import de save JSON e reset de dados |
+| [#20](https://github.com/SS20112006/Codora/issues/20) | **Task 20** | `release` | Auditoria de acessibilidade WCAG AA, performance e deploy em produção |
 
 ---
 
