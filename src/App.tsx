@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { usePomodoro } from './features/timer'
 import { useGameStore } from './features/state'
-import { Stage1DormRoom } from './features/room'
+import { Stage1DormRoom, type Stage1RoomSlots } from './features/room'
 import { useAtmosphere } from './features/atmosphere'
 import { TopHudBar, HudOverlay } from './features/hud'
 import { ContractsDrawer } from './features/contracts'
 import { AudioMixerModal, useAudio } from './features/audio'
+import {
+  ShopDrawer,
+  SecondMonitorAccessory,
+  CoffeeMugAccessory,
+  MonitorScreenBarAccessory,
+  HeadphonesAccessory,
+  calculateEquippedMultipliers,
+} from './features/shop'
+import { calculateProjectReward } from './features/economy'
 
 export const App: React.FC = () => {
   const profile = useGameStore((state) => state.profile)
+  const inventory = useGameStore((state) => state.inventory)
   const activeProject = useGameStore((state) => state.activeProject)
+  const completeActiveProject = useGameStore((state) => state.completeActiveProject)
   const hydrate = useGameStore((state) => state.hydrate)
+
   const [isContractsDrawerOpen, setIsContractsDrawerOpen] = useState(false)
   const [isAudioMixerOpen, setIsAudioMixerOpen] = useState(false)
+  const [isShopOpen, setIsShopOpen] = useState(false)
   const { playSfx } = useAudio()
 
   useEffect(() => {
@@ -21,21 +34,64 @@ export const App: React.FC = () => {
 
   const { effectiveAmbience } = useAtmosphere()
   const pomodoro = usePomodoro()
+  const isFocusing = pomodoro.status === 'running'
 
-  // Trigger gentle pomodoro chime alarm when a session completes
+  // Trigger gentle pomodoro chime alarm and reward resolution when a session completes
   useEffect(() => {
     if (pomodoro.status === 'completed') {
       playSfx('alarm')
+
+      // Resolve and payout active project with passive gear multipliers applied
+      if (activeProject) {
+        const equippedMultipliers = calculateEquippedMultipliers(inventory.equipped)
+        const payout = calculateProjectReward({
+          contract: {
+            id: activeProject.contractId,
+            title: activeProject.title,
+            durationMinutes: activeProject.durationMinutes,
+            stakeAmount: activeProject.stakedAmount,
+            baseReward: activeProject.baseReward,
+            baseXp: activeProject.baseXp,
+            isFreeTier: activeProject.isFreeTier,
+            description: '',
+          },
+          multipliers: equippedMultipliers,
+        })
+        completeActiveProject(payout)
+      }
     }
-  }, [pomodoro.status, playSfx])
+  }, [
+    pomodoro.status,
+    playSfx,
+    activeProject,
+    inventory.equipped,
+    completeActiveProject,
+  ])
+
+  // Construct modular scene slots based on equipped accessories
+  const sceneSlots: Stage1RoomSlots = {
+    headphones: inventory.equipped.headphones ? (
+      <HeadphonesAccessory />
+    ) : undefined,
+    secondMonitor: inventory.equipped.secondMonitor ? (
+      <SecondMonitorAccessory isFocusing={isFocusing} />
+    ) : undefined,
+    coffeeMug: inventory.equipped.coffeeMug ? (
+      <CoffeeMugAccessory isFocusing={isFocusing} />
+    ) : undefined,
+    deskLamp: inventory.equipped.deskLamp ? (
+      <MonitorScreenBarAccessory isFocusing={isFocusing} />
+    ) : undefined,
+  }
 
   return (
     <div className="w-screen h-screen overflow-hidden bg-codora-bg text-codora-text font-sans relative select-none selection:bg-amber-500/20 selection:text-amber-300">
-      {/* 1. Fullscreen Game Viewport (The Room Scene) */}
+      {/* 1. Fullscreen Game Viewport (The Room Scene with Equipped Accessories) */}
       <div className="absolute inset-0 w-full h-full z-0 flex items-center justify-center bg-codora-bg">
         <Stage1DormRoom
-          isFocusing={pomodoro.status === 'running'}
+          isFocusing={isFocusing}
           ambience={effectiveAmbience}
+          slots={sceneSlots}
           className="w-full h-full"
         />
       </div>
@@ -49,6 +105,8 @@ export const App: React.FC = () => {
               setIsContractsDrawerOpen(true)
             } else if (id === 'audio') {
               setIsAudioMixerOpen(true)
+            } else if (id === 'shop') {
+              setIsShopOpen(true)
             }
           }}
         />
@@ -80,9 +138,14 @@ export const App: React.FC = () => {
         isOpen={isAudioMixerOpen}
         onClose={() => setIsAudioMixerOpen(false)}
       />
+
+      {/* 6. In-Game Hardware & Setup Upgrade Shop Drawer */}
+      <ShopDrawer
+        isOpen={isShopOpen}
+        onClose={() => setIsShopOpen(false)}
+      />
     </div>
   )
 }
 
 export default App
-

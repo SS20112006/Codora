@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import App from './App'
+import { useGameStore } from './features/state'
 
 describe('App Core Component', () => {
   it('renders header, title, and career phase', () => {
@@ -147,6 +148,62 @@ describe('App Core Component', () => {
       expect(screen.queryByTestId('audio-mixer-modal')).not.toBeInTheDocument()
     })
   })
+
+  it('opens shop drawer via HUD shortcut and closes it', async () => {
+    render(<App />)
+
+    expect(screen.queryByTestId('shop-drawer')).not.toBeInTheDocument()
+
+    // Click "Loja" shortcut on top HUD bar
+    const shopShortcut = screen.getByRole('button', { name: 'Loja' })
+    fireEvent.click(shopShortcut)
+
+    expect(screen.getByTestId('shop-drawer')).toBeInTheDocument()
+    expect(screen.getByRole('dialog', { name: /Loja de Hardware e Acessórios/i })).toBeInTheDocument()
+
+    // Close shop drawer
+    const closeBtn = screen.getByTestId('btn-close-shop-drawer')
+    fireEvent.click(closeBtn)
+
+    await waitFor(() => {
+      expect(screen.queryByTestId('shop-drawer')).not.toBeInTheDocument()
+    })
+  })
+
+  it('purchases and equips shop accessory updating scene visuals immediately', async () => {
+    // Give player enough DevCoins for items
+    useGameStore.setState({
+      profile: {
+        ...useGameStore.getState().profile,
+        devCoins: 1000,
+      },
+    })
+
+    render(<App />)
+
+    // Open shop
+    fireEvent.click(screen.getByRole('button', { name: 'Loja' }))
+    expect(screen.getByTestId('shop-drawer')).toBeInTheDocument()
+
+    // Initially, second monitor is not in scene
+    expect(screen.queryByTestId('equipped-second-monitor')).not.toBeInTheDocument()
+
+    // Buy second monitor
+    const buyMonitorBtn = screen.getByTestId('btn-buy-monitor_second_vertical')
+    fireEvent.click(buyMonitorBtn)
+
+    // Second monitor should now immediately appear in the fullscreen scene
+    expect(screen.getByTestId('equipped-second-monitor')).toBeInTheDocument()
+
+    // Buy headphones
+    const buyHeadphonesBtn = screen.getByTestId('btn-buy-headphones_studio_pro')
+    fireEvent.click(buyHeadphonesBtn)
+
+    // Avatar should now render headphones and desk accessory appears
+    expect(screen.getByTestId('avatar-headphones')).toBeInTheDocument()
+    expect(screen.getByTestId('equipped-headphones-accessory')).toBeInTheDocument()
+  })
 })
+
 
 

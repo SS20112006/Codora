@@ -13,6 +13,9 @@ export type InventorySlot =
   | 'clothing'
   | 'os'
   | 'ide'
+  | 'secondMonitor'
+  | 'deskLamp'
+  | 'coffeeMug'
 
 export interface Inventory {
   ownedItemIds: string[]

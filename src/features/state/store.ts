@@ -1,6 +1,10 @@
 import { create } from 'zustand'
 import { calculateLevelFromXp, getCareerRole, getCareerStage } from '@/features/economy/levels'
-import { generateContractMarket } from '@/features/economy/contracts'
+import {
+  evaluateContractFinancials,
+  generateContractMarket,
+} from '@/features/economy/contracts'
+import { calculateEquippedMultipliers } from '@/features/shop/items'
 import type {
   ProjectCancellationResult,
   ProjectCompletionResult,
@@ -302,12 +306,14 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     },
 
     refreshContractsMarket: () => {
-      const { profile, availableContracts } = get()
+      const { profile, availableContracts, inventory } = get()
       const previousIds = availableContracts.map((c) => c.id)
+      const multipliers = calculateEquippedMultipliers(inventory.equipped)
       const nextMarket = generateContractMarket({
         stage: profile.stage,
         playerCoins: profile.devCoins,
         avoidContractIds: previousIds,
+        multipliers,
       })
       set({ availableContracts: nextMarket })
     },
@@ -347,34 +353,57 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     },
 
     equipItem: (slot: InventorySlot, itemId: string): boolean => {
-      const { inventory } = get()
+      const { inventory, availableContracts } = get()
       if (!inventory.ownedItemIds.includes(itemId)) {
         return false
       }
 
+      const nextEquipped = {
+        ...inventory.equipped,
+        [slot]: itemId,
+      }
+      const multipliers = calculateEquippedMultipliers(nextEquipped)
+      const updatedContracts = availableContracts.map((c) => {
+        const financials = evaluateContractFinancials(c, multipliers)
+        return {
+          ...c,
+          netProfit: financials.netProfit,
+          roiPercentage: financials.roiPercentage,
+        }
+      })
+
       set((state) => ({
         inventory: {
           ...state.inventory,
-          equipped: {
-            ...state.inventory.equipped,
-            [slot]: itemId,
-          },
+          equipped: nextEquipped,
         },
+        availableContracts: updatedContracts,
       }))
       return true
     },
 
     unequipItem: (slot: InventorySlot) => {
-      set((state) => {
-        const nextEquipped = { ...state.inventory.equipped }
-        delete nextEquipped[slot]
+      const { inventory, availableContracts } = get()
+      const nextEquipped = { ...inventory.equipped }
+      delete nextEquipped[slot]
+
+      const multipliers = calculateEquippedMultipliers(nextEquipped)
+      const updatedContracts = availableContracts.map((c) => {
+        const financials = evaluateContractFinancials(c, multipliers)
         return {
-          inventory: {
-            ...state.inventory,
-            equipped: nextEquipped,
-          },
+          ...c,
+          netProfit: financials.netProfit,
+          roiPercentage: financials.roiPercentage,
         }
       })
+
+      set((state) => ({
+        inventory: {
+          ...state.inventory,
+          equipped: nextEquipped,
+        },
+        availableContracts: updatedContracts,
+      }))
     },
 
     updateSettings: (partial: Partial<GameSettings>) => {
